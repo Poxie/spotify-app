@@ -83,9 +83,9 @@ export const PlayerTrack: React.FC<Props> = ({ isPaused, duration, audio }) => {
     return(
         <div className="player-track">
             <div className="track-container" onMouseDown={handleMouseDown} ref={container} onClick={changeCurrentTime}>
-                <div className="track filled" style={{width: `${percentage}%`}} />
+                <div className="mini-player-track filled" style={{width: `${percentage}%`}} />
                 <div className="filled-dot" style={{left: `${percentage - 3}%`}} ref={dot} />
-                <div className="track"/>
+                <div className="mini-player-track"/>
             </div>
             <Flex className="track-numbers" justifyContent={'space-between'}>
                 <span>
