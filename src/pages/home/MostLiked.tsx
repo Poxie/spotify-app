@@ -28,7 +28,7 @@ export const MostLiked: React.FC<Props> = ({ children, items }) => {
         <Flex className="most-liked-overflow">
             <div className="most-liked">
                 <h1>
-                    Most Liked Globally
+                    <span className="underlined">Most</span> Liked Globally
                 </h1>
                 <Flex className="most-liked-container" ref={container}>
                     {items.map((item, key) => {

@@ -13,17 +13,19 @@
         margin-left: 15px;
         margin-bottom: 60px;
         position: relative;
-
-        &::after {
-            content: '';
-            background-color: var(--primary-text);
-            width: 80px;
-            height: 4px;
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            border-radius: var(--border-radius);
-        }
+    }
+}
+.underlined {
+    position: relative;
+    &::after {
+        content: '';
+        background-color: var(--primary-text);
+        width: 100%;
+        height: 4px;
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        border-radius: var(--border-radius);
     }
 }
 .most-liked-overflow {
