@@ -7,6 +7,7 @@
 .most-liked {
     padding: 120px 0;
     width: 1500px;
+    max-width: 90%;
     margin: 0 auto;
 
     h1 {
@@ -139,6 +140,7 @@
 }
 .tops-container {
     width: calc(1500px - 15px);
+    max-width: 90%;
     margin: 0 auto;
 }
 .track {
