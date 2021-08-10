@@ -3,7 +3,6 @@ import { useAPI } from "../../contexts/ApiProvider";
 import { Artist } from "../../types/Artist";
 import { SearchArtist } from "../../types/SearchArtist";
 import { SearchResult } from "./SearchResult";
-const searchResults = require('./SearchResults.json');
 
 interface Props {
     query: string;
