@@ -1,5 +1,6 @@
 import React from "react"
 import { Album } from "../../types/Album"
+import { PlayerControls } from "./PlayerControls"
 
 interface Props {
     name: string;
@@ -20,6 +21,9 @@ export const SmallPlayer: React.FC<Props> = ({ name, durationMS, album, active, 
                     {album.artists[0].name}
                 </div>
             </div>
+            <PlayerControls 
+                preview={preview}
+            />
         </div>
     )
 }
