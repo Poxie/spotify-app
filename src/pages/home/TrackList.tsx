@@ -4,8 +4,9 @@ import { Track } from "./Track"
 
 interface Props {
     tracks: TrackType[];
+    startFrom?: number;
 }
-export const TrackList: React.FC<Props> = ({ tracks }) => {
+export const TrackList: React.FC<Props> = ({ tracks, startFrom=11 }) => {
     return(
         <div className="track-list">
             {tracks.map((track, key) => {
@@ -16,7 +17,7 @@ export const TrackList: React.FC<Props> = ({ tracks }) => {
                         duration={duration_ms}
                         image={album.images[0].url}
                         name={name}
-                        index={key + 11}
+                        index={key + startFrom}
                         key={id}
                     />
                 )
