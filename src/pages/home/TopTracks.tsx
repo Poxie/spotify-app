@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAPI } from "../../contexts/ApiProvider"
 import { Track } from "../../types/Track";
+import { AllTops } from "./AllTops";
 import { MostLiked } from "./MostLiked";
 import tempTracks from './TempTops.json';
 
@@ -20,10 +21,14 @@ export const TopTracks = () => {
         //     })
     }, []);
 
+    const mostLiked = tracks.splice(0, 10);
     return(
         <div className="top-tracks">
             <MostLiked 
-                items={tracks.splice(0, 15)}
+                items={mostLiked}
+            />
+            <AllTops 
+                tracks={tracks}
             />
         </div>
     )
