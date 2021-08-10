@@ -143,7 +143,7 @@
     max-width: 90%;
     margin: 0 auto;
 }
-.track {
+.track, .album {
     padding: 10px;
     background-color: var(--mini-player-background);
     border-radius: var(--border-radius);
@@ -181,4 +181,228 @@
 }
 .highlight {
     font-weight: 600;
+}
+
+// Artist Search
+.artist-search {
+    padding: 70px 0;
+    max-width: 90%;
+    margin: 0 auto;
+
+    h1 {
+        font-size: 45px;
+    }
+    .input {
+        width: 100%;
+        max-width: 100%;
+        
+        input {
+            font-size: 20px;
+            padding: 15px 20px !important;
+        }
+        .input-examples {
+            font-size: 20px;
+        }
+    }
+    .search-main {
+        max-width: 78%;
+    }
+    .artist-name {
+        font-size: 20px;
+        font-weight: 600;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;    
+    }
+    .search {
+        position: relative;
+        width: 520px;
+        max-width: 100%;
+    }
+}
+.search-results {
+    width: 100%;
+    margin-top: 10px;
+    box-shadow: rgb(0 0 0 / 30%) 0px 1px 4px 0px;
+    padding: 5px;
+    border-radius: var(--border-radius);
+    background-color: var(--secondary-background);
+    max-height: 330px;
+    overflow: auto;
+    position: absolute;
+    z-index: 13;
+}
+.scrollbar::-webkit-scrollbar {
+    width: 12px;
+    background-color: var(--scroll-background);
+    border-radius: var(--border-radius);
+}
+.scrollbar::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 10px 10px var(--scroll-thumb-background);
+    border: solid 3px transparent;
+    border-radius: var(--border-radius);
+}
+.search-result {
+    padding: 10px;
+    border-radius: var(--border-radius);
+
+    .search-extras {
+        font-size: 14px;
+        color: var(--text-muted);
+        font-weight: 600;
+    }
+    img {
+        width: 60px;
+        height: 60px;
+        border-radius: calc(var(--border-radius) / 2);
+        margin-right: 10px;
+    }
+    &:hover {
+        background-color: var(--input-background);
+    }
+}
+.waiting-for-artist {
+    margin-top: 30px;
+    color: var(--text-muted);
+    font-weight: 600;
+
+    .loading {
+        margin-top: 15px;
+    }
+}
+.artist-stats {
+    width: 1200px;
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 90px 0;
+
+    a {
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+.artist-info {
+    img {
+        width: 180px;
+        border-radius: var(--border-radius);
+    }
+    .artist-text {
+        margin-left: 20px;
+    }
+    .name {
+        margin: 0;
+        font-size: 30px;
+    }
+    .followers {
+        font-weight: 600;
+        color: var(--text-muted);
+        font-size: 18px;
+        margin-top: 6px;
+    }
+    .genres {
+        margin-top: 5px;
+        display: block;
+        color: var(--text-muted);
+        font-weight: 600;
+        font-size: 15px;
+    }
+}
+.related-artists {
+    .header {
+        color: var(--text-muted);
+        font-size: 17px;
+        margin-bottom: 12px;
+    }
+    img {
+        min-width: 100px;
+        width: 100px;
+        height: 100px;
+    }
+    .artist-text {
+        margin-left: 10px;
+    }
+    .name {
+        font-size: 18px;
+    }
+    .followers {
+        font-size: 14px;
+    }
+    .genres {
+        font-size: 13px;
+    }
+}
+
+.loading-artist-stats {
+    margin-top: 90px;
+    width: 1200px;
+    max-width: 90%;
+}
+.loading-img {
+    width: 180px;
+    height: 180px;
+    border-radius: var(--border-radius);
+    margin-right: 25px;
+}
+.loading-username {
+    width: 250px;
+    height: 40px;
+    border-radius: 120px;
+    margin-bottom: 13px;
+}
+.loading-text {
+    width: 100px;
+    height: 24px;
+    border-radius: 120px;
+    margin-bottom: 6px;
+}
+.loading-bg {
+    background-color: var(--input-background);
+}
+.loading-info:not(:last-child) {
+    margin-right: 25px;
+}
+.small {
+    .loading-img {
+        width: 100px;
+        height: 100px;
+    }
+    .loading-username {
+        height: 24px;
+        width: 140px;
+    }
+    .loading-text {
+        height: 19px;
+        width: 100px;
+    }
+}
+.loading-box {
+    width: 49%;
+    margin-top: 25px;
+    height: 360px;
+    border-radius: var(--border-radius);
+}
+
+.artist-extras {
+    margin-top: 25px;
+}
+.box-title {
+    font-weight: 600;
+    color: var(--text-muted);
+    padding-bottom: 15px;
+}
+.artist-box {
+    background-color: var(--secondary-background);
+    padding: 20px 25px 25px 25px;
+    width: 49%;
+    border-radius: var(--border-radius);
+
+    .track>span {
+        display: none;
+    }
+}
+.box-content {
+    max-height: 300px;
+    overflow: auto;
 }
