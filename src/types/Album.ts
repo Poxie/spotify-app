@@ -6,7 +6,7 @@ export interface Album {
     href: string;
     uri: string;
     name: string;
-    id: number;
+    id: string;
     artists: Artist[];
     release_date: string;
     total_tracks: number;
