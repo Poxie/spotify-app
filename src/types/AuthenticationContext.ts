@@ -1,6 +1,6 @@
 import { User } from "./User";
 
 export interface AuthenticationContext {
-    user: User | null;
+    user: User | null | {};
     login: () => void;
 }

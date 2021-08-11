@@ -21,7 +21,7 @@ interface Props {
 }
 export const AuthenticationProvider: React.FC<Props> = ({ children }) => {
     const { get } = useAPI();
-    const [user, setUser] = useState<User | null>(null);
+    const [user, setUser] = useState<AuthenticationContextType['user']>({});
 
     useEffect(() => {
         const token = window.localStorage.userAccessToken;
@@ -31,6 +31,8 @@ export const AuthenticationProvider: React.FC<Props> = ({ children }) => {
                 .then(response => {
                     setUser(response);
                 })
+        } else {
+            setUser(null);
         }
     }, []);
 
