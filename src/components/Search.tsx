@@ -4,7 +4,7 @@ import { Input } from "./Input"
 import './Search.scss';
 
 interface Props {
-    onChoice: (value: string) => void;
+    onChoice: (value: string, type: string) => void;
     type?: 'artist' | 'track';
 }
 export const Search: React.FC<Props> = ({ onChoice, type='artist' }) => {
@@ -20,8 +20,8 @@ export const Search: React.FC<Props> = ({ onChoice, type='artist' }) => {
         }, 100);
     }, []);
     const handleClick = useMemo(() => (value: string) => {
-        onChoice(value);
-    }, []);
+        onChoice(value, type);
+    }, [onChoice, type]);
     
     return(
         <div className="search">
