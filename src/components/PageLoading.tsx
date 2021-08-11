@@ -1,7 +1,11 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Flex } from './Flex';
 import './PageLoading.scss';
-export const PageLoading = () => {
+
+interface Props {
+    message?: string
+}
+export const PageLoading: React.FC<Props> = ({ message='Loading...' }) => {
     return(
         <Flex className="page-loading" alignItems={'center'} justifyContent={'center'} flexDirection={'column'}>
             <div className="container">
@@ -11,7 +15,7 @@ export const PageLoading = () => {
                 <div className="shape shape-4"></div>
             </div>
             <span className="loading">
-                Loading...
+                {message}
             </span>
         </Flex>
     )
