@@ -38,6 +38,8 @@ export const ProfileProvider: React.FC<Props> = ({ children }) => {
             .then(res => res.json())
             .then(response => {
                 setTop(previous => {return {...previous, ...{tracks: response.items}}});
+            }).catch(error => {
+                return <Redirect to="/authorize" />
             })
 
         get('me/top/artists?time_range=long_term&limit=50', true)
