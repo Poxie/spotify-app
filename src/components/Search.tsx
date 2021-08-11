@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { SearchResults } from "../pages/home/SearchResults";
+import { SearchResults } from "./SearchResults";
 import { Input } from "./Input"
 import './Search.scss';
 
