@@ -6,4 +6,5 @@ export interface ProfileContext {
     user: User;
     tracks: Track[];
     artists: Artist[];
+    recommendations: Track[];
 }

@@ -6,4 +6,5 @@ export interface Artist {
     uri: string;
     href: string;
     images: Image[];
+    genres?: string[];
 }
