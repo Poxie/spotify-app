@@ -7,14 +7,15 @@ import { SearchResult } from "./SearchResult";
 interface Props {
     query: string;
     onClick: (id: string) => void;
+    type?: 'artist' | 'track';
     visible?: boolean;
 }
-export const SearchResults: React.FC<Props> = ({ query, onClick, visible }) => {
+export const SearchResults: React.FC<Props> = ({ query, onClick, visible, type='artist' }) => {
     const { get } = useAPI();
     const [results, setResult] = useState<SearchArtist[]>([]);
 
     useEffect(() => {
-        get(`search?q=${query}&type=artist`)
+        get(`search?q=${query}&type=${type}`)
             .then(res => res.json())
             .then(response => {
                 const result = response.artists.items.map((item: Artist) => item);
