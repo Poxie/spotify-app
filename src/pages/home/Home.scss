@@ -1,3 +1,16 @@
+.home {
+    animation: scale-in 1.5s forwards ease-in-out;
+}
+@keyframes scale-in {
+    0% {
+        transform: scale(1.3);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
 // Most liked
 .most-liked-container {
     transition: transform;

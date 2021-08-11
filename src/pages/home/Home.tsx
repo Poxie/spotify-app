@@ -4,7 +4,7 @@ import { ArtistSearch } from './ArtistSearch';
 
 export const Home = () => {
     return (
-        <div>
+        <div className="home">
             <TopTracks />
             <ArtistSearch />
         </div>

@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { PageLoading } from "../components/PageLoading";
 import { CLIENT_ID, CLIENT_SECRET, API_ENDPOINT } from '../config.json';
 import { APIContext as APIContextType } from "../types/APIContext";
 
@@ -48,7 +49,7 @@ export const APIProvider: React.FC<Props> = ({ children }) => {
         });
     }, []);
 
-    if(!accessToken) return <div>loading</div>
+    if(!accessToken) return <PageLoading />;
 
     const value = {
         get,
