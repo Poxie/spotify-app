@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { APIProvider } from './contexts/ApiProvider';
 import { AuthenticationProvider } from './contexts/AuthenticationProvider';
+import { ProfileProvider } from './contexts/ProfileProvider';
 import { Authorize } from './pages/authorize/Authorize';
 import { Home } from './pages/home/Home';
 import { Profile } from './pages/profile/Profile';
@@ -20,10 +21,12 @@ function App() {
               path="/authorize"
               component={Authorize}
             />
-            <Route 
-              path="/profile"
-              component={Profile}
-            />
+            <ProfileProvider>
+              <Route 
+                path="/profile"
+                component={Profile}
+              />
+            </ProfileProvider>
           </AuthenticationProvider>
         </APIProvider>
       </Router>
