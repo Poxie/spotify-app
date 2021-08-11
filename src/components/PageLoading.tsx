@@ -2,18 +2,6 @@ import { useEffect } from 'react';
 import { Flex } from './Flex';
 import './PageLoading.scss';
 export const PageLoading = () => {
-    useEffect(() => {
-        return () => {
-            // @ts-ignore
-            const style = document.querySelector('.App').style;
-            style.overflow = 'none';
-
-            setTimeout(() => {
-                style.overflow = 'unset';
-            }, 2300);
-        }
-    }, []);
-
     return(
         <Flex className="page-loading" alignItems={'center'} justifyContent={'center'} flexDirection={'column'}>
             <div className="container">
