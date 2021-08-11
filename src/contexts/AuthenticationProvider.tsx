@@ -37,7 +37,7 @@ export const AuthenticationProvider: React.FC<Props> = ({ children }) => {
     }, []);
 
     const login = useMemo(() => () => {
-        window.location.href = `https://accounts.spotify.com/authorize?response_type=code&client_id=${CLIENT_ID}&scopres=${encodeURIComponent(SCOPES)}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}`;
+        window.location.href = `https://accounts.spotify.com/authorize?response_type=code&client_id=${CLIENT_ID}&scope=${encodeURIComponent(SCOPES)}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}`;
     }, []);
 
     const value = {
