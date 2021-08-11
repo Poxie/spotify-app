@@ -16,6 +16,7 @@
   --input-background: #ececec;
   --scroll-background: #fafafa;
   --scroll-thumb-background: #e0e0e0;
+  --initial-animation: initial-scale-in 1.5s forwards ease-in-out;
 }
 
 body {
