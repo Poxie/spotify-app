@@ -73,10 +73,17 @@
     a:hover {
         text-decoration: underline;
     }
+    &>* {
+        pointer-events: none;
+    }
     &.active {
         transform: scale(1.25);
         margin: 0 40px;
         opacity: 1;
+
+        &>* {
+            pointer-events: unset;
+        }
     }
 }
 .player-track {
