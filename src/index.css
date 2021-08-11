@@ -27,6 +27,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: var(--primary-text);
 }
+.App {
+  overflow: hidden;
+}
 
 a {
   color: inherit;
