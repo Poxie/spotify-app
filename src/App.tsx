@@ -5,6 +5,7 @@ import { APIProvider } from './contexts/ApiProvider';
 import { AuthenticationProvider } from './contexts/AuthenticationProvider';
 import { ProfileProvider } from './contexts/ProfileProvider';
 import { Authorize } from './pages/authorize/Authorize';
+import { Explore } from './pages/explore/Explore';
 import { Home } from './pages/home/Home';
 import { Profile } from './pages/profile/Profile';
 
@@ -30,6 +31,10 @@ function App() {
                 component={Profile}
               />
             </ProfileProvider>
+            <Route 
+              path="/explore"
+              component={Explore}
+            />
           </AuthenticationProvider>
         </APIProvider>
       </Router>
