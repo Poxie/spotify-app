@@ -14,6 +14,7 @@ export const Artists: React.FC<Props> = ({ artists }) => {
                     <Artist 
                         href={uri}
                         name={name}
+                        key={artist.id}
                     />
                 )
             })}
