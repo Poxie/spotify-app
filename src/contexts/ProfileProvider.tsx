@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useEffect, useState } from "react"
-import { Redirect } from 'react-router-dom';
+import React, { createContext, useContext, useEffect, useMemo, useRef, useState } from "react"
+import { Redirect, useHistory } from 'react-router-dom';
 import { PageLoading } from "../components/PageLoading";
 import { Artist } from "../types/Artist";
 import { ProfileContext as ProfileContextType } from "../types/ProfileContext";
@@ -26,10 +26,14 @@ interface Props {
 export const ProfileProvider: React.FC<Props> = ({ children }) => {
     const { get } = useAPI();
     const { user } = useAuthentication();
+    const history = useHistory();
     const [top, setTop] = useState<{tracks: Track[], artists: Artist[]}>({tracks: [], artists: []});
     const [recommendations, setRecommendations] = useState<Track[]>([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const unlisten = useRef<any>(null);
 
-    useEffect(() => {
+    const fetchUserData = useMemo(() => () => {
+        setIsLoading(true);
         get('me/top/tracks?time_range=long_term&limit=50', true)
             .then(res => res.json())
             .then(response => {
@@ -41,6 +45,24 @@ export const ProfileProvider: React.FC<Props> = ({ children }) => {
             .then(response => {
                 setTop(previous => {return {...previous, ...{artists: response.items}}});
             })
+    }, []);
+    useEffect(() => {
+        if(window.location.pathname === '/profile') {
+            fetchUserData();
+            return;
+        }
+        unlisten.current = history.listen((location, action) => {
+            if(location.pathname === '/profile') {
+                fetchUserData();
+                unlisten.current();
+                unlisten.current = null;
+            }
+        })
+        return () => {
+            if(unlisten.current) {
+                unlisten.current();
+            }
+        };
     }, []);
 
     useEffect(() => {
@@ -58,12 +80,13 @@ export const ProfileProvider: React.FC<Props> = ({ children }) => {
             .then(res => res.json())
             .then(response => {
                 setRecommendations(response.tracks);
+                setIsLoading(false);
             })
     }, [top]);
 
     if(!user) return <Redirect to="/authorize" />;
 
-    if(!Object.keys(user).length || !top.tracks.length || !top.artists.length || !recommendations.length) return <PageLoading />;
+    if((!Object.keys(user).length || !top.tracks.length || !top.artists.length || !recommendations.length) && isLoading) return <PageLoading />;
 
     const value = {
         user: user,
