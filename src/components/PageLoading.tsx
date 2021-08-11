@@ -3,7 +3,7 @@ import { Flex } from './Flex';
 import './PageLoading.scss';
 
 interface Props {
-    message?: string
+    message?: any;
 }
 export const PageLoading: React.FC<Props> = ({ message='Loading...' }) => {
     return(
