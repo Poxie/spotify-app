@@ -17,7 +17,7 @@ export const Search: React.FC<Props> = ({ onChoice, type='artist' }) => {
     const handleBlur = useMemo(() => () => {
         setTimeout(() => {
             setIsFocusing(false);
-        }, 100);
+        }, 150);
     }, []);
     const handleClick = useMemo(() => (value: string) => {
         onChoice(value, type);
