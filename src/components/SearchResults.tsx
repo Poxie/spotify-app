@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
-import { useAPI } from "../../contexts/ApiProvider";
-import { Artist } from "../../types/Artist";
-import { SearchArtist } from "../../types/SearchArtist";
+import { useAPI } from '../contexts/ApiProvider';
+import { Artist } from '../types/Artist';
+import { SearchArtist } from '../types/SearchArtist';
 import { SearchResult } from "./SearchResult";
 
 interface Props {

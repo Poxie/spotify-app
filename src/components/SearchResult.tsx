@@ -1,6 +1,6 @@
 import React from "react"
-import { Clickable } from "../../components/Clickable"
-import { Flex } from "../../components/Flex"
+import { Clickable } from "./Clickable"
+import { Flex } from "./Flex"
 
 interface Props {
     name: string;
