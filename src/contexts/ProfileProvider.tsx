@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react"
 import { Redirect } from 'react-router-dom';
+import { PageLoading } from "../components/PageLoading";
 import { Artist } from "../types/Artist";
 import { ProfileContext as ProfileContextType } from "../types/ProfileContext";
 import { Track } from "../types/Track";
@@ -62,7 +63,7 @@ export const ProfileProvider: React.FC<Props> = ({ children }) => {
 
     if(!user) return <Redirect to="/authorize" />;
 
-    if(!Object.keys(user).length || !top.tracks.length || !top.artists.length || !recommendations.length) return <div>loading</div>
+    if(!Object.keys(user).length || !top.tracks.length || !top.artists.length || !recommendations.length) return <PageLoading />;
 
     const value = {
         user: user,
