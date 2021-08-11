@@ -1,0 +1,8 @@
+{
+    "CLIENT_ID": "e0e2a031141b481e8aa54436def0b4c3",
+    "CLIENT_SECRET": "b3b5fe90ab2146d6aac6c14483041afe",
+    "API_ENDPOINT": "https://api.spotify.com/v1",
+    "REDIRECT_URI": "http://localhost:3000/authorize",
+    "SPOTIFY_ACCOUNT_ENDPOINT": "https://accounts.spotify.com/api/",
+    "SPOTIFY_TOKEN_ENDPOINT": "https://accounts.spotify.com/api/token"
+}
