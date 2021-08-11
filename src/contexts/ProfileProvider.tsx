@@ -9,7 +9,8 @@ import { useAuthentication } from "./AuthenticationProvider";
 const initial = {
     user: {},
     artists: [],
-    tracks: []
+    tracks: [],
+    recommendations: []
 }
 // @ts-ignore: because user is never actually an empty object
 const ProfileContext = createContext<ProfileContextType>(initial);
@@ -25,6 +26,7 @@ export const ProfileProvider: React.FC<Props> = ({ children }) => {
     const { get } = useAPI();
     const { user } = useAuthentication();
     const [top, setTop] = useState<{tracks: Track[], artists: Artist[]}>({tracks: [], artists: []});
+    const [recommendations, setRecommendations] = useState<Track[]>([]);
 
     useEffect(() => {
         get('me/top/tracks?time_range=long_term&limit=50', true)
@@ -40,14 +42,33 @@ export const ProfileProvider: React.FC<Props> = ({ children }) => {
             })
     }, []);
 
+    useEffect(() => {
+        if(!top.artists.length || !top.tracks.length) return;
+        const { artists, tracks } = top;
+
+        const artistSeeds = artists.slice(0,1).map(artist => artist.id).join(',');
+        const trackSeeds = tracks.slice(0,3).map(track => track.id).join(',');
+        const genreSeeds = artists.slice(0,1).map(artist => {
+            if(artist.genres) {
+                return artist.genres[0];
+            }
+        }).join(',');
+        get(`recommendations?seed_artists=${artistSeeds}&seed_tracks=${trackSeeds}&seed_genres=${genreSeeds}`)
+            .then(res => res.json())
+            .then(response => {
+                setRecommendations(response.tracks);
+            })
+    }, [top]);
+
     if(!user) return <Redirect to="/authorize" />;
 
-    if(!Object.keys(user).length || !top.tracks.length || !top.artists.length) return <div>loading</div>
+    if(!Object.keys(user).length || !top.tracks.length || !top.artists.length || !recommendations.length) return <div>loading</div>
 
     const value = {
         user: user,
         tracks: top.tracks,
-        artists: top.artists
+        artists: top.artists,
+        recommendations: recommendations
     }
     return(
         // @ts-ignore
