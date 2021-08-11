@@ -3,7 +3,8 @@ import { CLIENT_ID, CLIENT_SECRET, API_ENDPOINT } from '../config.json';
 import { APIContext as APIContextType } from "../types/APIContext";
 
 const initial = {
-    get: () => fetch(``)
+    get: () => fetch(``),
+    post: () => fetch(``)
 }
 const APIContext = createContext<APIContextType>(initial);
 
@@ -32,7 +33,8 @@ export const APIProvider: React.FC<Props> = ({ children }) => {
 
     const get = useMemo(() => async (query: string, userAccessToken?: boolean) => {
         // Update '' to user accessToken once AuthenticationProvider is a thing
-        const token = userAccessToken ? '' : accessToken;
+        console.log(window.localStorage.userAccessToken);
+        const token = (userAccessToken && window.localStorage.userAccessToken) ? window.localStorage.userAccessToken : accessToken;
         return await fetch(`${API_ENDPOINT}/${query}`, {
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -40,10 +42,17 @@ export const APIProvider: React.FC<Props> = ({ children }) => {
         });
     }, [accessToken]);
 
+    const post = useMemo(() => async (query: string) => {
+        return await fetch(`${API_ENDPOINT}/${query}`, {
+            method: 'POST'
+        });
+    }, []);
+
     if(!accessToken) return <div>loading</div>
 
     const value = {
-        get
+        get,
+        post
     }
     return(
         <APIContext.Provider value={value}>
