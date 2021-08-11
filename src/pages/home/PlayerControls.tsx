@@ -17,7 +17,10 @@ export const PlayerControls: React.FC<Props> = ({ preview }) => {
                 return;
             }
             audio.volume = .3;
-            audio.play();
+            audio.play()
+                .catch(error => {
+                    return setIsPlaying(false);
+                })
         } else {
             audio?.pause();
         }
