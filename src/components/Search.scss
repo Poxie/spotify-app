@@ -2,6 +2,19 @@
     position: relative;
     width: 520px;
     max-width: 100%;
+
+    .input {
+        width: 100%;
+        max-width: 100%;
+        
+        input {
+            font-size: 20px;
+            padding: 15px 20px !important;
+        }
+        .input-examples {
+            font-size: 20px;
+        }
+    }
 }
 .search-results {
     width: 100%;
