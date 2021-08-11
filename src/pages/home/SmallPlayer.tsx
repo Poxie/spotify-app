@@ -8,8 +8,9 @@ interface Props {
     album: Album;
     active: boolean;
     preview: string;
+    hasControls?: boolean;
 }
-export const SmallPlayer: React.FC<Props> = ({ name, durationMS, album, active, preview }) => {
+export const SmallPlayer: React.FC<Props> = ({ name, durationMS, album, active, preview, hasControls=true }) => {
     return(
         <div className={`small-player${active ? ' active' : ''}`}>
             <img src={album.images[0].url} alt="" />
@@ -21,9 +22,11 @@ export const SmallPlayer: React.FC<Props> = ({ name, durationMS, album, active, 
                     {album.artists[0].name}
                 </div>
             </div>
-            <PlayerControls 
-                preview={preview}
-            />
+            {hasControls && (
+                <PlayerControls 
+                    preview={preview}
+                />
+            )}
         </div>
     )
 }
