@@ -1,4 +1,6 @@
+import { useEffect, useRef, useState } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Navbar } from './components/Navbar';
 import { APIProvider } from './contexts/ApiProvider';
 import { AuthenticationProvider } from './contexts/AuthenticationProvider';
 import { ProfileProvider } from './contexts/ProfileProvider';
@@ -12,6 +14,7 @@ function App() {
       <Router>
         <APIProvider>
           <AuthenticationProvider>
+            <Navbar />
             <Route 
               path="/"
               exact
