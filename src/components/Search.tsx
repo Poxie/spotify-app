@@ -4,7 +4,7 @@ import { Input } from "./Input"
 import './Search.scss';
 
 interface Props {
-    onChoice: (value: string, type: string) => void;
+    onChoice: (value: string, type: 'artist' | 'track') => void;
     type?: 'artist' | 'track';
 }
 export const Search: React.FC<Props> = ({ onChoice, type='artist' }) => {
