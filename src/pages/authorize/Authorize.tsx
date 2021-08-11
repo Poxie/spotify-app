@@ -25,9 +25,10 @@ export const Authorize = () => {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
         }).then(res => res.json()).then(response => {
+            if(response.error) window.location.href = window.location.origin + '/authorize';
             if(!response.access_token) return;
             window.localStorage.userAccessToken = response.access_token;
-            window.location.href = window.location.origin;
+            window.location.href = window.location.origin + '/profile';
         }).catch(console.error);
     }, []);
 
