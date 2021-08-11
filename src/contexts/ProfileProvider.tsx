@@ -30,6 +30,7 @@ export const ProfileProvider: React.FC<Props> = ({ children }) => {
     const [top, setTop] = useState<{tracks: Track[], artists: Artist[]}>({tracks: [], artists: []});
     const [recommendations, setRecommendations] = useState<Track[]>([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState(false);
     const unlisten = useRef<any>(null);
 
     const fetchUserData = useMemo(() => () => {
@@ -37,14 +38,18 @@ export const ProfileProvider: React.FC<Props> = ({ children }) => {
         get('me/top/tracks?time_range=long_term&limit=50', true)
             .then(res => res.json())
             .then(response => {
+                if('error' in response) {
+                    return setError(true);
+                }
                 setTop(previous => {return {...previous, ...{tracks: response.items}}});
-            }).catch(error => {
-                return <Redirect to="/authorize" />
             })
 
         get('me/top/artists?time_range=long_term&limit=50', true)
             .then(res => res.json())
             .then(response => {
+                if(response.error) {
+                    return setError(true);
+                }
                 setTop(previous => {return {...previous, ...{artists: response.items}}});
             })
     }, []);
@@ -68,7 +73,7 @@ export const ProfileProvider: React.FC<Props> = ({ children }) => {
     }, []);
 
     useEffect(() => {
-        if(!top.artists.length || !top.tracks.length) return;
+        if(!top.artists?.length || !top.tracks?.length) return;
         const { artists, tracks } = top;
 
         const artistSeeds = artists.slice(0,1).map(artist => artist.id).join(',');
@@ -86,9 +91,9 @@ export const ProfileProvider: React.FC<Props> = ({ children }) => {
             })
     }, [top]);
 
-    if(!user) return <Redirect to="/authorize" />;
+    if(!user || error) return <Redirect to="/authorize" />;
 
-    if((!Object.keys(user).length || !top.tracks.length || !top.artists.length || !recommendations.length) && isLoading) return <PageLoading />;
+    if((!Object.keys(user).length || !top.tracks?.length || !top.artists?.length || !recommendations.length || error) && isLoading) return <PageLoading />;
 
     const value = {
         user: user,
