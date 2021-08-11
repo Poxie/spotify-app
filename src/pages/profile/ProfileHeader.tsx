@@ -1,7 +1,7 @@
 import React, { useState } from "react"
+import { CardContainer } from "../../components/CardContainer"
 import { Artist } from "../../types/Artist"
 import { Track } from "../../types/Track"
-import { MostLikedTracks } from "./MostLikedTracks"
 import { ProfileHeaderSection } from "./ProfileHeaderSection"
 
 interface Props {
@@ -18,7 +18,7 @@ export const ProfileHeader: React.FC<Props> = ({ tracks, artists }) => {
                 onExpand={() => setAllTracks(!allTracks)}
                 isExpanded={allTracks}
             >
-                <MostLikedTracks 
+                <CardContainer 
                     tracks={tracks}
                     showAll={allTracks}
                 />
@@ -28,7 +28,7 @@ export const ProfileHeader: React.FC<Props> = ({ tracks, artists }) => {
                 onExpand={() => setAllArtists(!allArtists)}
                 isExpanded={allArtists}
             >
-                <MostLikedTracks 
+                <CardContainer 
                     tracks={artists}
                     showAll={allArtists}
                 />

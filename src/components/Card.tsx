@@ -5,9 +5,9 @@ interface Props {
     image: string;
     uri: string;
 }
-export const ProfileTrack: React.FC<Props> = ({ name, image, uri }) => {
+export const Card: React.FC<Props> = ({ name, image, uri }) => {
     return(
-        <div className="profile-track">
+        <div className="card">
             <img src={image} alt="" />
             <a href={uri} className="name">
                 {name}

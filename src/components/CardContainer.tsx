@@ -1,17 +1,18 @@
 import React from "react"
-import { Flex } from "../../components/Flex"
-import { Artist } from "../../types/Artist"
-import { Track } from "../../types/Track"
-import { ProfileTrack } from "./ProfileTrack"
+import { Flex } from "./Flex"
+import { Artist } from "../types/Artist"
+import { Track } from "../types/Track"
+import { Card } from "./Card"
+import './CardContainer.scss';
 
 interface Props {
     tracks: Track[] | Artist[];
     showAll: boolean;
 }
-export const MostLikedTracks: React.FC<Props> = ({ tracks, showAll }) => {
+export const CardContainer: React.FC<Props> = ({ tracks, showAll }) => {
     const visibleTracks = showAll ? tracks : tracks.slice(0, 5);
     return(
-        <Flex className={`most-liked-tracks${showAll ? ' expanded' : ''}`} flexWrap={'wrap'} justifyContent={'space-between'}>
+        <Flex className={`card-container${showAll ? ' expanded' : ''}`} flexWrap={'wrap'} justifyContent={'space-between'}>
             {visibleTracks.map(track => {
                 const { id, name, uri } = track;
                 let image;
@@ -23,7 +24,7 @@ export const MostLikedTracks: React.FC<Props> = ({ tracks, showAll }) => {
                     image = track.images[0].url;
                 }
                 return(
-                    <ProfileTrack
+                    <Card
                         name={name}
                         image={image}
                         uri={uri}
