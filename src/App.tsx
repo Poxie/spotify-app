@@ -3,6 +3,7 @@ import { APIProvider } from './contexts/ApiProvider';
 import { AuthenticationProvider } from './contexts/AuthenticationProvider';
 import { Authorize } from './pages/authorize/Authorize';
 import { Home } from './pages/home/Home';
+import { Profile } from './pages/profile/Profile';
 
 function App() {
   return (
@@ -18,6 +19,10 @@ function App() {
             <Route 
               path="/authorize"
               component={Authorize}
+            />
+            <Route 
+              path="/profile"
+              component={Profile}
             />
           </AuthenticationProvider>
         </APIProvider>
