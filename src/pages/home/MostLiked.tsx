@@ -40,6 +40,7 @@ export const MostLiked: React.FC<Props> = ({ children, items }) => {
                                     album={item.album}
                                     preview={item.preview_url}
                                     active={key === active}
+                                    uri={item.uri}
                                 />
                             </Clickable>
                         )

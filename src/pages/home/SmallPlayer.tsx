@@ -8,19 +8,20 @@ interface Props {
     album: Album;
     active: boolean;
     preview: string;
+    uri: string;
     hasControls?: boolean;
 }
-export const SmallPlayer: React.FC<Props> = ({ name, durationMS, album, active, preview, hasControls=true }) => {
+export const SmallPlayer: React.FC<Props> = ({ name, durationMS, album, active, preview, uri, hasControls=true }) => {
     return(
         <div className={`small-player${active ? ' active' : ''}`}>
             <img src={album.images[0].url} alt="" />
             <div className="song-text">
-                <div className="song-title">
+                <a href={uri} className="song-title">
                     {name}
-                </div>
-                <div className="song-artist">
+                </a>
+                <a href={album.artists[0].uri} className="song-artist">
                     {album.artists[0].name}
-                </div>
+                </a>
             </div>
             {hasControls && (
                 <PlayerControls 
