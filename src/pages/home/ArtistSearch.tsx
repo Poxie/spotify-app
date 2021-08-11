@@ -1,10 +1,7 @@
 import { useMemo, useState } from "react"
 import { Flex } from "../../components/Flex"
-import { Input } from "../../components/Input"
 import { Search } from "../../components/Search";
-import { SearchArtist } from "../../types/SearchArtist";
 import { ArtistStats } from "./ArtistStats";
-import { SearchResults } from "./SearchResults";
 
 export const ArtistSearch = () => {
     const [activeArtist, setActiveArtist] = useState<string>('');
