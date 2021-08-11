@@ -1,11 +1,13 @@
 import React, { useMemo, useState } from "react";
 import { SearchResults } from "../pages/home/SearchResults";
 import { Input } from "./Input"
+import './Search.scss';
 
 interface Props {
     onChoice: (value: string) => void;
+    type?: 'artist' | 'track';
 }
-export const Search: React.FC<Props> = ({ onChoice }) => {
+export const Search: React.FC<Props> = ({ onChoice, type='artist' }) => {
     const [value, setvalue] = useState('');
     const [isFocusing, setIsFocusing] = useState(false);
 
@@ -24,7 +26,7 @@ export const Search: React.FC<Props> = ({ onChoice }) => {
     return(
         <div className="search">
             <Input
-                examples={['The Chainsmokers', 'Coldplay', 'Alan Walker']}
+                examples={type === 'artist' ? ['The Chainsmokers', 'Coldplay', 'Alan Walker'] : ['Closer', 'Something just like this', 'Viva la vida']}
                 rounded={true}
                 onChange={setvalue}
                 onBlur={handleBlur}
@@ -35,6 +37,7 @@ export const Search: React.FC<Props> = ({ onChoice }) => {
                     query={value}
                     onClick={handleClick}
                     visible={isFocusing}
+                    type={type}
                 />
             )}
         </div>
