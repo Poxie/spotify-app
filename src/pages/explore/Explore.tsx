@@ -14,6 +14,12 @@ export const Explore = () => {
         setIsExploring(true);
     }
 
+    useEffect(() => {
+        return () => {
+            document.body.style.overflow = ''
+        };
+    }, []);
+
     return(
         <div className="explore">
             <ExploreHeader 
