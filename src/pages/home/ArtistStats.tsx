@@ -6,7 +6,7 @@ import { Album } from "../../types/Album";
 import { SearchArtist } from "../../types/SearchArtist";
 import { Track } from "../../types/Track";
 import { ArtistExtras } from "./ArtistExtras";
-import { ArtistInfo } from "./ArtistInfo";
+import { ArtistInfo } from "../../components/ArtistInfo";
 import { LoadingArtistStats } from "./LoadingArtistStats";
 import { RelatedArtists } from "./RelatedArtists";
 

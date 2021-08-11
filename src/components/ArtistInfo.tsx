@@ -1,5 +1,6 @@
 import React from "react"
-import { Flex } from "../../components/Flex"
+import { Flex } from "./Flex"
+import './ArtistInfo.scss';
 
 interface Props {
     name: string;

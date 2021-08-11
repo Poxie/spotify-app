@@ -1,7 +1,7 @@
 import React from "react"
 import { Flex } from "../../components/Flex";
 import { SearchArtist } from "../../types/SearchArtist"
-import { ArtistInfo } from "./ArtistInfo";
+import { ArtistInfo } from "../../components/ArtistInfo";
 
 interface Props {
     artists: SearchArtist[];

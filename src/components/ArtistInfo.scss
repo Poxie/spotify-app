@@ -1,0 +1,26 @@
+.artist-info {
+    img {
+        width: 180px;
+        border-radius: var(--border-radius);
+    }
+    .artist-text {
+        margin-left: 20px;
+    }
+    .name {
+        margin: 0;
+        font-size: 30px;
+    }
+    .followers {
+        font-weight: 600;
+        color: var(--text-muted);
+        font-size: 18px;
+        margin-top: 6px;
+    }
+    .genres {
+        margin-top: 5px;
+        display: block;
+        color: var(--text-muted);
+        font-weight: 600;
+        font-size: 15px;
+    }
+}
