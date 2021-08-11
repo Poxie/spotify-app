@@ -18,8 +18,7 @@ export const SearchResults: React.FC<Props> = ({ query, onClick, visible, type='
         get(`search?q=${query}&type=${type}`)
             .then(res => res.json())
             .then(response => {
-                const result = response.artists.items.map((item: Artist) => item);
-                console.log(JSON.stringify(result));
+                const result = response[type + 's'].items.map((item: Artist) => item);
                 setResult(result);
             });
     }, [query]);
@@ -33,13 +32,15 @@ export const SearchResults: React.FC<Props> = ({ query, onClick, visible, type='
     }
     return(
         <div className="search-results scrollbar" style={style}>
-            {results.map(result => {
-                const { name, images, followers, id } = result;
+            {results.map((result: any) => {
+                const { name, images, followers, id, album } = result;
+                const image = images ? images[0]?.url : album.images[0]?.url;
+                const extras = images ? `${followers.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} followers` : '';
                 return(
                     <SearchResult 
                         name={name}
-                        image={images[0]?.url}
-                        extras={`${followers.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} followers`}
+                        image={image}
+                        extras={extras}
                         onClick={() => onClick(id)}
                         id={id}
                         key={id}
