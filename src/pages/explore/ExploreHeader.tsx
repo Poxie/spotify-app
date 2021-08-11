@@ -37,7 +37,7 @@ export const ExploreHeader: React.FC<Props> = ({ onExplore, isExploring }) => {
     return(
         <Flex className={`explore-header${isExploring ? ' exploring' : ''}`} alignItems={'center'} flexDirection={'column'}>
             <h1>Time to <span className="underlined">explore</span></h1>
-            <Flex>
+            <Flex className="search-container">
                 <div className="explore-search">
                     <Search 
                         onChoice={updateSearchedItem}
