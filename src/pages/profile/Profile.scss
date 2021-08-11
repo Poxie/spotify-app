@@ -1,5 +1,5 @@
 .profile {
-    .show-all {
+    .header-action {
         font-weight: 600;
         color: var(--text-muted);
     }
@@ -8,16 +8,34 @@
         max-width: 90%;
         margin: 0 auto;
     }
+    .small-player {
+        transform: scale(1);
+        margin: 0;
+        margin-bottom: 20px;
+        width: 23.5%;
+        height: 100%;
+
+        img {
+            width: 200px;
+            max-width: 100%;
+        }
+    }
 }
 .most-liked-tracks {
     background-color: var(--secondary-background);
     padding: 25px;
     border-radius: var(--border-radius);
 }
+.profile-header {
+    border-bottom: 4px solid var(--secondary-background);
+    border-radius: var(--border-radius);
+    padding: 50px 0;
+}
 .header.expanded {
     position: sticky;
-    top: 0px;
+    top: 0;
     background-color: var(--primary-background);
+    z-index: 14;
 }
 .expanded {
     .profile-track {
@@ -48,26 +66,41 @@
     }
 }
 
+// Recommendations
+.recommendations {
+    padding: 50px 0;
+}
+
 @media only screen and (max-width: 650px) {
-    .most-liked-tracks {
-        flex-direction: column;
-    }
     .profile-header {
         text-align: center;
     }
-    .profile-track {
+    .profile-track, .small-player {
         max-width: 100%;
-        width: 100%;
+        width: 47% !important;
         margin-right: 0 !important;
 
         img {
-            width: 100%;
+            width: 100% !important;
         }
         .name {
-            font-size: 6vw;
+            font-size: 4vw;
         }
         &:not(:last-child) {
             margin-bottom: 25px;
+        }
+    }
+}
+@media only screen and (max-width: 400px) {
+    .most-liked-tracks, .recommendation-container {
+        flex-direction: column;
+        
+        .small-player, .profile-track {
+            width: 100% !important;
+    
+            .name {
+                font-size: 7vw;
+            }
         }
     }
 }
