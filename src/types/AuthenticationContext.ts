@@ -2,6 +2,6 @@ import { User } from "./User";
 
 export interface AuthenticationContext {
     user: User | null | {};
-    login: () => void;
+    login: (newWindow?: boolean) => void;
     loginModifyAccess: () => void;
 }
