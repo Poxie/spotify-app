@@ -102,6 +102,21 @@
 @media only screen and (max-width: 900px) {
     .explore-header {
         padding-top: 100px;
+
+        h1 {
+            font-size: 35px;
+        }
+        form.input input {
+            font-size: 16px;
+            padding: 12px 20px !important;
+        }
+        .input-examples {
+            font-size: 16px !important;
+        }
+
+        .button {
+            margin-top: 15px;
+        }
     }
     .search-container {
         flex-direction: column;

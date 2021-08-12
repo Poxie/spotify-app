@@ -41,14 +41,30 @@
 }
 
 @media only screen and (max-width: 400px) {
-    .most-liked-tracks, .recommendation-container {
-        flex-direction: column;
-        
-        .small-player, .profile-track {
+    .profile {
+        h1 {
+            font-size: 20px;
+        }
+        .header {
+            margin: 25px 0;
+        }
+    }
+    .recommendations {
+        .small-player {
             width: 100% !important;
-    
-            .name {
-                font-size: 7vw;
+
+            .song-title {
+                font-size: 20px;
+            }
+            img {
+                width: 100%;
+            }
+        }
+        .header {
+            flex-direction: column;
+
+            h1 {
+                font-size: 30px;
             }
         }
     }
