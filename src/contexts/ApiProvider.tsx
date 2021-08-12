@@ -43,8 +43,12 @@ export const APIProvider: React.FC<Props> = ({ children }) => {
     }, [accessToken]);
 
     const post = useMemo(() => async (query: string) => {
+        const token = window.localStorage.userModifyAccessToken;
         return await fetch(`${API_ENDPOINT}/${query}`, {
-            method: 'POST'
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
         });
     }, []);
 
