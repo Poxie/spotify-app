@@ -3,7 +3,6 @@ import React, { createContext, useContext, useEffect, useMemo, useState } from "
 import { CLIENT_ID, REDIRECT_URI } from '../config.json';
 import { AuthenticationContext as AuthenticationContextType } from "../types/AuthenticationContext";
 import { useAPI } from "./ApiProvider";
-const SCOPES = 'user-read-private user-library-read playlist-read-private user-top-read user-read-recently-played';
 
 const initial = {
     user: null,
@@ -37,9 +36,11 @@ export const AuthenticationProvider: React.FC<Props> = ({ children }) => {
     }, []);
 
     const login = useMemo(() => () => {
+        const SCOPES = 'user-read-private user-library-read playlist-read-private user-top-read user-read-recently-played';
         window.location.href = `https://accounts.spotify.com/authorize?response_type=code&client_id=${CLIENT_ID}&scope=${encodeURIComponent(SCOPES)}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}`;
     }, []);
     const loginModifyAccess = useMemo(() => () => {
+        const SCOPES = 'playlist-modify-public playlist-modify-private playlist-read-private';
         window.location.href = `https://accounts.spotify.com/authorize?response_type=code&client_id=${CLIENT_ID}&scope=${encodeURIComponent(SCOPES)}&redirect_uri=${encodeURIComponent(REDIRECT_URI + '/modify')}`;
     }, []);
 
