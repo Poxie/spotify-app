@@ -11,6 +11,8 @@
 
         img {
             width: 100%;
+            width: 109px;
+            height: 109px;
             border-radius: var(--border-radius);
             display: block;
         }
@@ -36,6 +38,18 @@
         overflow: hidden;
         text-overflow: ellipsis;
         margin-top: 7px;
+    }
+}
+.loading-playlists {
+    &>div {
+        width: 31%;
+        margin-bottom: 25px;
+
+        .loading-img {
+            width: 109px;
+            height: 109px;
+            margin-bottom: 8px;
+        }
     }
 }
 

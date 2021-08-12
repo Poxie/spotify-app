@@ -9,6 +9,7 @@ import { useAPI } from "../contexts/ApiProvider"
 import { useAuthentication } from "../contexts/AuthenticationProvider";
 import { useModal } from "../contexts/ModalProvider";
 import { Playlist as PlaylistType } from "../types/Playlist";
+import { LoadingPlaylists } from "./LoadingPlaylists";
 import { PlaylistItem } from "./PlaylistItem";
 import './PlaylistMenuModal.scss';
 
@@ -50,19 +51,23 @@ export const PlaylistMenuModal: React.FC<Props> = ({ uri }) => {
         <Modal>
             <ModalHeader text={`Choose Playlist`}>
                 <Flex className="playlist-container scrollbar" flexWrap={'wrap'} justifyContent={'space-between'}>
-                    {playlists.map(playlist => {
-                        const { images, name, id } = playlist;
-                        return(
-                            <PlaylistItem 
-                                image={images[0]?.url}
-                                name={name}
-                                active={id === active}
-                                id={id}
-                                setActive={setActive}
-                                key={id}
-                            />
-                        )
-                    })}
+                    {playlists.length ? (
+                        playlists.map(playlist => {
+                            const { images, name, id } = playlist;
+                            return(
+                                <PlaylistItem 
+                                    image={images[0]?.url}
+                                    name={name}
+                                    active={id === active}
+                                    id={id}
+                                    setActive={setActive}
+                                    key={id}
+                                />
+                            )
+                        })
+                    ) : (
+                        <LoadingPlaylists />
+                    )}
                 </Flex>
             </ModalHeader>
             <ModalFooter>
