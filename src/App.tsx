@@ -24,7 +24,7 @@ function App() {
                 component={Home}
               />
               <Route 
-                path="/authorize"
+                path="/authorize/:type?"
                 component={Authorize}
               />
               <ProfileProvider>
