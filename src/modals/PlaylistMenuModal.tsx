@@ -17,7 +17,7 @@ interface Props {
     uri: string;
 }
 export const PlaylistMenuModal: React.FC<Props> = ({ uri }) => {
-    const { user } = useAuthentication();
+    const { user, login } = useAuthentication();
     const { get, post } = useAPI();
     const { close } = useModal();
     const [playlists, setPlaylists] = useState<PlaylistType[]>([]);
@@ -28,6 +28,9 @@ export const PlaylistMenuModal: React.FC<Props> = ({ uri }) => {
         get('me/playlists?limit=50', true)
             .then(res => res.json())
             .then(response => {
+                if(response.error) {
+                    login(true);
+                }
                 // @ts-ignore: user will always be a of type User
                 setPlaylists(response.items.filter((item: PlaylistType) => item.owner.id === user.id));
             })
