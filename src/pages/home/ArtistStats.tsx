@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useMemo, useState } from "react"
 import { Flex } from "../../components/Flex";
 import { Loading } from "../../components/Loading";
 import { useAPI } from "../../contexts/ApiProvider"
@@ -20,6 +20,17 @@ export const ArtistStats: React.FC<Props> = ({ id }) => {
     const [artist, setArtist] = useState<SearchArtist | null>(null);
     const [relatedArtists, setRelatedArtists] = useState<SearchArtist[]>([]);
 
+    const newAlbums = useMemo(() => (query: string) => {
+        get(query)
+            .then(res => res.json())
+            .then(response => {
+                if(!response.items) return;
+                setAlbums(previous => [...previous, ...response.items]);
+                if(response.next) {
+                    newAlbums(response.next);
+                }
+            })
+    }, []);
     useEffect(() => {
         if(id === '') return;
 
@@ -31,11 +42,7 @@ export const ArtistStats: React.FC<Props> = ({ id }) => {
             })
 
         // Getting albums
-        get(`artists/${id}/albums`)
-            .then(res => res.json())
-            .then(response => {
-                setAlbums(response.items);
-            })
+        newAlbums(`artists/${id}/albums?limit=50`);
 
         // Getting top tracks
         get(`artists/${id}/top-tracks?market=US`)
