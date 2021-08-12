@@ -44,6 +44,7 @@ export const PlaylistMenuModal: React.FC<Props> = ({ uri }) => {
             .then(res => res.json())
             .then(response => {
                 if(response.error) {
+                    setPosting(false);
                     return window.open(window.location.origin + '/authorize/modify');
                 }
                 close();
