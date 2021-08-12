@@ -40,7 +40,18 @@
     padding: 50px 0;
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 750px) {
+    .recommendations {
+        .small-player {
+            width: 48%;
+
+            img {
+                width: 100%;
+            }
+        }
+    }
+}
+@media only screen and (max-width: 500px) {
     .profile {
         h1 {
             font-size: 20px;

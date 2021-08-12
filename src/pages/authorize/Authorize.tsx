@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 // @ts-ignore
-import { CLIENT_SECRET, CLIENT_ID, SPOTIFY_TOKEN_ENDPOINT } from '../../config.json';
+import { CLIENT_SECRET, CLIENT_ID, SPOTIFY_TOKEN_ENDPOINT, REDIRECT_URI } from '../../config.json';
 import { useAuthentication } from '../../contexts/AuthenticationProvider';
 
 export const Authorize = () => {
@@ -12,7 +12,7 @@ export const Authorize = () => {
 
         const data = new URLSearchParams();
         data.append("grant_type", "authorization_code");
-        data.append("redirect_uri", 'http://localhost:3000/authorize');
+        data.append("redirect_uri", REDIRECT_URI);
         data.append("code", code);
 
         const encodedClientCredentials = Buffer.from(CLIENT_ID + ':' + CLIENT_SECRET).toString('base64');
