@@ -17,6 +17,7 @@
   --scroll-background: #fafafa;
   --scroll-thumb-background: #e0e0e0;
   --initial-animation: initial-scale-in 1.5s forwards ease-in-out;
+  --tooltip-background: var(--secondary-background);
 }
 
 body {
@@ -46,4 +47,38 @@ a {
       transform: scale(1);
       opacity: 1;
   }
+}
+
+[data-tooltip]::after {
+  pointer-events: none;
+}
+[data-tooltip] {
+  position: relative;
+}
+[data-tooltip-direction="up"]::after {
+  top: -49px;
+}
+[data-tooltip-direction="down"]::after {
+  top: 53px;
+}
+[data-tooltip]::after {
+  content: attr(data-tooltip);
+  display: block;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%) scale(.7);
+  background-color: var(--tooltip-background);
+  white-space: nowrap;
+  color: var(--primary-text);
+  padding: 6px 12px;
+  border-radius: 5px;
+  opacity: 0;
+  transition: opacity .15s, transform .15s;
+  font-weight: 600;
+  font-size: 16px;
+  box-shadow: rgb(0 0 0 / 30%) 0px 1px 4px 0px;
+}
+[data-tooltip]:hover::after {
+  opacity: 1;
+  transform: translate(-50%) scale(1);
 }
