@@ -5,7 +5,8 @@ import { APIContext as APIContextType } from "../types/APIContext";
 
 const initial = {
     get: () => fetch(``),
-    post: () => fetch(``)
+    post: () => fetch(``),
+    put: () => fetch(``)
 }
 const APIContext = createContext<APIContextType>(initial);
 
@@ -47,11 +48,22 @@ export const APIProvider: React.FC<Props> = ({ children }) => {
         });
     }, []);
 
+    const put = useMemo(() => (query: string) => {
+        const token = window.localStorage.userModifyAccessToken;
+        return fetch(`${API_ENDPOINT}/${query}`, {
+            method: 'PUT',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+    }, []);
+
     if(!accessToken) return <PageLoading />;
 
     const value = {
         get,
-        post
+        post,
+        put
     }
     return(
         <APIContext.Provider value={value}>
