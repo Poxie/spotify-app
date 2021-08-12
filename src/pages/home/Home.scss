@@ -49,6 +49,7 @@
     transition-duration: var(--transition-duration);
     transition-timing-function: var(--transition-timing-function);
     user-select: none;
+    position: relative;
     
     img {
         border-radius: var(--border-radius);
