@@ -14,8 +14,8 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <ModalProvider>
-          <APIProvider>
+        <APIProvider>
+          <ModalProvider>
             <AuthenticationProvider>
               <Navbar />
               <Route 
@@ -38,8 +38,8 @@ function App() {
                 component={Explore}
               />
             </AuthenticationProvider>
-          </APIProvider>
-        </ModalProvider>
+          </ModalProvider>
+        </APIProvider>
       </Router>
     </div>
   );
