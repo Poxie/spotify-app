@@ -53,13 +53,12 @@
         margin-top: 15px;
         display: block;
         font-size: 15px;
-        font-family: 'Roboto';
         font-weight: 400;
         color: var(--primary-text);
     }
 }
 .modal-footer {
-    background-color: rgba(0,0,0,.2);
+    background-color: rgba(0,0,0,.05);
 
     .button {
         margin-left: 20px;
@@ -74,6 +73,7 @@
     position: absolute;
     opacity: 0;
     transition: opacity .3s;
+    pointer-events: all;
 
     &.animate-in {
         opacity: 1;
