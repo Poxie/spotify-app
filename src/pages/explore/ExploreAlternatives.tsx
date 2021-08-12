@@ -59,7 +59,7 @@ export const ExploreAlternatives: React.FC<Props> = ({ track, artist, setIsExplo
 
                     setTimeout(() => {
                         setHasLoadPage(false);
-                    }, 1000);
+                    }, 700);
                 }, 2500);
             })
     }, [isExploring, artist, track]);
