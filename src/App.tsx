@@ -5,6 +5,7 @@ import { APIProvider } from './contexts/ApiProvider';
 import { AuthenticationProvider } from './contexts/AuthenticationProvider';
 import { ModalProvider } from './contexts/ModalProvider';
 import { ProfileProvider } from './contexts/ProfileProvider';
+import { FeedbackProvider } from './modals/FeedbackProvider';
 import { Authorize } from './pages/authorize/Authorize';
 import { Explore } from './pages/explore/Explore';
 import { Home } from './pages/home/Home';
@@ -14,32 +15,34 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <APIProvider>
-          <AuthenticationProvider>
-            <ModalProvider>
-              <Navbar />
-              <Route 
-                path="/"
-                exact
-                component={Home}
-              />
-              <Route 
-                path="/authorize/:type?"
-                component={Authorize}
-              />
-              <ProfileProvider>
+        <FeedbackProvider>
+          <APIProvider>
+            <AuthenticationProvider>
+              <ModalProvider>
+                <Navbar />
                 <Route 
-                  path="/profile"
-                  component={Profile}
+                  path="/"
+                  exact
+                  component={Home}
                 />
-              </ProfileProvider>
-              <Route 
-                path="/explore"
-                component={Explore}
-              />
-            </ModalProvider>
-          </AuthenticationProvider>
-        </APIProvider>
+                <Route 
+                  path="/authorize/:type?"
+                  component={Authorize}
+                />
+                <ProfileProvider>
+                  <Route 
+                    path="/profile"
+                    component={Profile}
+                  />
+                </ProfileProvider>
+                <Route 
+                  path="/explore"
+                  component={Explore}
+                />
+              </ModalProvider>
+            </AuthenticationProvider>
+          </APIProvider>
+        </FeedbackProvider>
       </Router>
     </div>
   );
