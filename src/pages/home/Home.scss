@@ -86,6 +86,17 @@
         }
     }
 }
+.add-to-playlist {
+    position: absolute;
+    z-index: 34;
+    fill: var(--text-muted);
+    top: 10px;
+    right: 10px;
+
+    svg {
+        width: 24px;
+    }
+}
 .player-track {
     margin-top: 10px;
 
