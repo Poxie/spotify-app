@@ -91,7 +91,8 @@ export const ProfileProvider: React.FC<Props> = ({ children }) => {
             })
     }, [top]);
 
-    if(!user || error) return <Redirect to="/authorize" />;
+    if((!user || error) && isLoading) return <Redirect to="/authorize" />;
+    if(!user) return <div></div>
 
     if((!Object.keys(user).length || !top.tracks?.length || !top.artists?.length || !recommendations.length || error) && isLoading) return <PageLoading />;
 
