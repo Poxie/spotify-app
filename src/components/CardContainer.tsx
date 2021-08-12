@@ -18,10 +18,10 @@ export const CardContainer: React.FC<Props> = ({ tracks, showAll }) => {
                 let image;
                 if(Object.keys(track).includes('album')) {
                     // @ts-ignore: as I check if there is an album property
-                    image = track.album.images[0].url;
+                    image = track.album.images[1].url;
                 } else if(Object.keys(track).includes('images')) {
                     // @ts-ignore: as I check if there is an images property
-                    image = track.images[0].url;
+                    image = track.images[1].url;
                 }
                 return(
                     <Card
