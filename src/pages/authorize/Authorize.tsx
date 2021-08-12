@@ -15,7 +15,7 @@ export const Authorize = () => {
         const code = new URLSearchParams(window.location.search).get('code');
         if(!code) {
             if(type === 'modify') {
-                return loginModifyAccess();
+                return loginModifyAccess(false);
             } else {
                 return login();
             }
