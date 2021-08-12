@@ -35,9 +35,14 @@ export const AuthenticationProvider: React.FC<Props> = ({ children }) => {
         }
     }, []);
 
-    const login = useMemo(() => () => {
+    const login = useMemo(() => (newWindow?: boolean) => {
         const SCOPES = 'user-read-private user-library-read playlist-read-private user-top-read user-read-recently-played';
-        window.location.href = `https://accounts.spotify.com/authorize?response_type=code&client_id=${CLIENT_ID}&scope=${encodeURIComponent(SCOPES)}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}`;
+        const URL =`https://accounts.spotify.com/authorize?response_type=code&client_id=${CLIENT_ID}&scope=${encodeURIComponent(SCOPES)}&redirect_uri=${encodeURIComponent(REDIRECT_URI + (newWindow ? '?close=true' : ''))}`;
+        if(newWindow) {
+            window.open(URL);
+        } else {
+            window.location.href = URL;
+        }
     }, []);
     const loginModifyAccess = useMemo(() => () => {
         console.log('hey')
