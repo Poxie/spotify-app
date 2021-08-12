@@ -7,6 +7,7 @@ import { ModalFooter } from "../components/ModalFooter";
 import { ModalHeader } from "../components/ModalHeader"
 import { useAPI } from "../contexts/ApiProvider"
 import { useAuthentication } from "../contexts/AuthenticationProvider";
+import { useFeedback } from "../contexts/FeedbackProvider";
 import { useModal } from "../contexts/ModalProvider";
 import { Playlist as PlaylistType } from "../types/Playlist";
 import { LoadingPlaylists } from "./LoadingPlaylists";
@@ -20,6 +21,7 @@ export const PlaylistMenuModal: React.FC<Props> = ({ uri }) => {
     const { user, login } = useAuthentication();
     const { get, post } = useAPI();
     const { close } = useModal();
+    const { setFeedback } = useFeedback();
     const [playlists, setPlaylists] = useState<PlaylistType[]>([]);
     const [active, setActive] = useState('');
     const [posting, setPosting] = useState(false);
@@ -47,6 +49,7 @@ export const PlaylistMenuModal: React.FC<Props> = ({ uri }) => {
                     setPosting(false);
                     return window.open(window.location.origin + '/authorize/modify');
                 }
+                setFeedback(`Added song to playlist`, 'info');
                 close();
             })
     }
