@@ -8,9 +8,10 @@ interface Props {
     image: string;
     artists: ArtistType[];
     duration: number;
+    uri: string;
     index?: number
 }
-export const Track: React.FC<Props> = ({ name, image, artists, duration, index }) => {
+export const Track: React.FC<Props> = ({ name, image, artists, duration, uri, index }) => {
     return(
         <Flex className="track" alignItems={'center'} justifyContent={'space-between'}>
             <Flex className="info" alignItems={'center'}>
@@ -20,7 +21,9 @@ export const Track: React.FC<Props> = ({ name, image, artists, duration, index }
                     </span>
                 )}
                 <img src={image} alt="" />
-                {name}
+                <a href={uri}>
+                    {name}
+                </a>
             </Flex>
             <span>
                 by
