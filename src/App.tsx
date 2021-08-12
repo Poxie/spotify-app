@@ -5,7 +5,7 @@ import { APIProvider } from './contexts/ApiProvider';
 import { AuthenticationProvider } from './contexts/AuthenticationProvider';
 import { ModalProvider } from './contexts/ModalProvider';
 import { ProfileProvider } from './contexts/ProfileProvider';
-import { FeedbackProvider } from './modals/FeedbackProvider';
+import { FeedbackProvider } from './contexts/FeedbackProvider';
 import { Authorize } from './pages/authorize/Authorize';
 import { Explore } from './pages/explore/Explore';
 import { Home } from './pages/home/Home';
