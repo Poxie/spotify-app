@@ -18,6 +18,7 @@
   --scroll-thumb-background: #e0e0e0;
   --initial-animation: initial-scale-in 1.5s forwards ease-in-out;
   --tooltip-background: var(--secondary-background);
+  --color-info: #0099ff;
 }
 
 body {
@@ -112,6 +113,9 @@ a {
 }
 .feedback.error {
   border-left: 5px solid var(--player-icon-color);
+}
+.feedback.info {
+  border-left: 5px solid var(--color-info);
 }
 @keyframes feedback-in {
   from {
