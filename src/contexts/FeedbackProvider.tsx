@@ -23,6 +23,7 @@ export const FeedbackProvider: React.FC<Props> = ({ children }) => {
 
             setTimeout(() => {
                 setFeedback(null);
+                setAnimateOut(false);
             }, 600);
         }, 6000);
     }
