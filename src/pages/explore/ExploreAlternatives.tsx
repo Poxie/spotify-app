@@ -88,7 +88,7 @@ export const ExploreAlternatives: React.FC<Props> = ({ track, artist, setIsExplo
                             Go back
                         </Flex>
                     </Clickable>
-                    <Flex justifyContent={'space-between'} alignItems={'center'}>
+                    <Flex className="alternatives-header" justifyContent={'space-between'} alignItems={'center'}>
                         <h1>
                             Tracks related to <span style={{fontWeight: 'bold'}}>{artist.name}</span> and <span style={{fontWeight: 'bold'}}>{track.name}</span>
                         </h1>
