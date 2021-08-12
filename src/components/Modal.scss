@@ -6,6 +6,7 @@
     height: 100%;
     z-index: 1414;
     display: flex;
+    pointer-events: none;
 }
 .modal-item {
     opacity: 0;
