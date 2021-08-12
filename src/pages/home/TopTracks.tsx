@@ -15,7 +15,6 @@ export const TopTracks = () => {
             .then(res => res.json())
             .then(response => {
                 const tracks = response.tracks.items.map((item: any) => item.track);
-                console.log(JSON.stringify(tracks));
                 setTracks(tracks);
             })
     }, []);

@@ -33,8 +33,6 @@ export const APIProvider: React.FC<Props> = ({ children }) => {
     }, []);
 
     const get = useMemo(() => async (query: string, userAccessToken?: boolean) => {
-        // Update '' to user accessToken once AuthenticationProvider is a thing
-        console.log(window.localStorage.userAccessToken);
         const token = (userAccessToken && window.localStorage.userAccessToken) ? window.localStorage.userAccessToken : accessToken;
         return await fetch(`${API_ENDPOINT}/${query}`, {
             headers: {

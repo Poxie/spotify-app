@@ -1,6 +1,5 @@
 import React from "react"
 import { Clickable } from "../../components/Clickable"
-import { Flex } from "../../components/Flex"
 import { Header } from "./Header"
 
 interface Props {

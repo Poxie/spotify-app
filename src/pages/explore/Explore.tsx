@@ -4,6 +4,7 @@ import { Track } from '../../types/Track';
 import './Explore.scss';
 import { ExploreAlternatives } from './ExploreAlternatives';
 import { ExploreHeader } from './ExploreHeader';
+
 export const Explore = () => {
     const [seeds, setSeeds] = useState<{track: null | Track, artist: null | SearchArtist}>({track: null, artist: null});
     const [isExploring, setIsExploring] = useState(false);

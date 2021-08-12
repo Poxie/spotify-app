@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
 // @ts-ignore
 import { CLIENT_SECRET, CLIENT_ID, SPOTIFY_TOKEN_ENDPOINT } from '../../config.json';
 import { useAuthentication } from '../../contexts/AuthenticationProvider';

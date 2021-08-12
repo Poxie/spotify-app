@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react"
 import { Flex } from "../../components/Flex";
 
-
 const convertToRedableString = (ms: number) => {
     var minutes = Math.floor(ms / 60000);
     var seconds = parseInt(((ms % 60000) / 1000).toFixed(0));

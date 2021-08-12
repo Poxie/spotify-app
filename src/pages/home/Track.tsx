@@ -1,7 +1,6 @@
 import React from "react"
 import { Flex } from "../../components/Flex"
 import { Artist as ArtistType } from "../../types/Artist"
-import { Artist } from "./Artist"
 import { Artists } from "./Artists"
 
 interface Props {
