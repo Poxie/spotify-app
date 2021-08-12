@@ -15,7 +15,7 @@ export const TrackList: React.FC<Props> = ({ tracks, startFrom=11 }) => {
                     <Track 
                         artists={artists}
                         duration={duration_ms}
-                        image={album.images[0].url}
+                        image={album.images[2].url}
                         name={name}
                         index={key + startFrom}
                         key={id}
