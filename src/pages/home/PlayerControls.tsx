@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react"
+import { useFeedback } from "../../contexts/FeedbackProvider"
 import { PlayerButtons } from "./PlayerButtons"
 import { PlayerTrack } from "./PlayerTrack"
 
@@ -6,6 +7,7 @@ interface Props {
     preview: string;
 }
 export const PlayerControls: React.FC<Props> = ({ preview }) => {
+    const { setFeedback } = useFeedback();
     const [isPlaying, setIsPlaying] = useState(false);
     const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
     const [error, setError] = useState(false);
@@ -21,6 +23,7 @@ export const PlayerControls: React.FC<Props> = ({ preview }) => {
             audio.play()
                 .catch(error => {
                     setError(true);
+                    setFeedback('Unable to play preview', 'error');
                     return setIsPlaying(false);
                 })
         } else {
