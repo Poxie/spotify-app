@@ -22,7 +22,7 @@ export const ExtraAccessModal = () => {
                 text={`Extra Access Needed`}
             >
                 <span>
-                    To be able to add tracks to your playlist we need extra access. We will add, and only if, you agree to add the track.
+                    To be able to add tracks to your playlist we need extra access. We will only add tracks to playlists, and only if you agree to add the track.
                 </span>
             </ModalHeader>
             <ModalFooter>
