@@ -37,6 +37,9 @@ export const ExploreHeader: React.FC<Props> = ({ onExplore, isExploring }) => {
     return(
         <Flex className={`explore-header${isExploring ? ' exploring' : ''}`} alignItems={'center'} flexDirection={'column'}>
             <h1>Time to <span className="underlined">explore</span></h1>
+            <span>
+                Enter an artist and a song you like, and we will suggest songs we believe you might like.
+            </span>
             <Flex className="search-container">
                 <div className="explore-search">
                     <Search 

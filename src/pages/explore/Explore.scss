@@ -6,9 +6,13 @@
 }
 .explore-header {
     height: 100vh;
-    padding-top: 289px;
+    padding-top: 220px;
     transition: margin-top .5s ease-in-out;
 
+    &>span {
+        font-size: 18px;
+        margin-bottom: 45px;
+    }
     .button {
         margin-top: 45px;
         font-size: 18px;
