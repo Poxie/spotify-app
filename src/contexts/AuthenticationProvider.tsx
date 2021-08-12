@@ -22,7 +22,7 @@ export const AuthenticationProvider: React.FC<Props> = ({ children }) => {
     const { get } = useAPI();
     const [user, setUser] = useState<AuthenticationContextType['user']>({});
 
-    useEffect(() => {
+    const getUser = useMemo(() => () => {
         const token = window.localStorage.userAccessToken;
         if(token) {
             get('me', true)
@@ -34,6 +34,17 @@ export const AuthenticationProvider: React.FC<Props> = ({ children }) => {
             setUser(null);
         }
     }, []);
+    useEffect(() => {
+        if(user && Object.keys(user).length === 0) {
+            getUser();
+        }
+
+        window.onstorage = () => {
+            if(!user) {
+                getUser();
+            }
+        }
+    }, [user, getUser]);
 
     const login = useMemo(() => (newWindow?: boolean) => {
         const SCOPES = 'user-read-private user-library-read playlist-read-private user-top-read user-read-recently-played';
