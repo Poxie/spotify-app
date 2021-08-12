@@ -5,13 +5,19 @@ import { CLIENT_SECRET, CLIENT_ID, SPOTIFY_TOKEN_ENDPOINT, REDIRECT_URI } from '
 import { useAuthentication } from '../../contexts/AuthenticationProvider';
 
 export const Authorize = () => {
-    const { login } = useAuthentication();
+    const { login, loginModifyAccess } = useAuthentication();
     // @ts-ignore
     const { type } = useParams();
 
     useEffect(() => {
         const code = new URLSearchParams(window.location.search).get('code');
-        if(!code) return login();
+        if(!code) {
+            if(type === 'modify') {
+                return loginModifyAccess();
+            } else {
+                return login();
+            }
+        }
 
         const data = new URLSearchParams();
         data.append("grant_type", "authorization_code");
