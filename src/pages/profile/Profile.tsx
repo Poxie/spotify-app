@@ -4,7 +4,7 @@ import { ProfileHeader } from "./ProfileHeader";
 import { Recommendations } from "./Recommendations";
 
 export const Profile = () => {
-    const { user, tracks, artists, recommendations } = useProfile();
+    const { user, tracks, artists, recommendations, showMore } = useProfile();
 
     return(
         <div className="profile">
@@ -14,6 +14,7 @@ export const Profile = () => {
             />
             <Recommendations 
                 tracks={recommendations}
+                showMore={showMore}
             />
         </div>
     )

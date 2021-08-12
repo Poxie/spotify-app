@@ -7,4 +7,5 @@ export interface ProfileContext {
     tracks: Track[];
     artists: Artist[];
     recommendations: Track[];
+    showMore: () => void;
 }

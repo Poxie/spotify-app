@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { Button } from "../../components/Button"
 import { Clickable } from "../../components/Clickable"
 import { Flex } from "../../components/Flex"
 import { Track } from "../../types/Track"
@@ -7,8 +8,9 @@ import { Header } from "./Header"
 
 interface Props {
     tracks: Track[];
+    showMore: () => void;
 }
-export const Recommendations: React.FC<Props> = ({ tracks }) => {
+export const Recommendations: React.FC<Props> = ({ tracks, showMore }) => {
     const [previewMode, setPreviewMode] = useState(false);
 
     return(
@@ -37,6 +39,9 @@ export const Recommendations: React.FC<Props> = ({ tracks }) => {
                     )
                 })}
             </Flex>
+            <Button type={'transparent'} onClick={showMore}>
+                Load More
+            </Button>
         </div>
     )
 }

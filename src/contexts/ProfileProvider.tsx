@@ -11,7 +11,8 @@ const initial = {
     user: {},
     artists: [],
     tracks: [],
-    recommendations: []
+    recommendations: [],
+    showMore: () => {}
 }
 // @ts-ignore: because user is never actually an empty object
 const ProfileContext = createContext<ProfileContextType>(initial);
@@ -20,6 +21,10 @@ export const useProfile = () => {
     return useContext(ProfileContext);
 }
 
+interface Top {
+    tracks: Track[], 
+    artists: Artist[]
+}
 interface Props {
     children: any;
 }
@@ -27,7 +32,7 @@ export const ProfileProvider: React.FC<Props> = ({ children }) => {
     const { get } = useAPI();
     const { user } = useAuthentication();
     const history = useHistory();
-    const [top, setTop] = useState<{tracks: Track[], artists: Artist[]}>({tracks: [], artists: []});
+    const [top, setTop] = useState<Top>({tracks: [], artists: []});
     const [recommendations, setRecommendations] = useState<Track[]>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(false);
@@ -72,8 +77,7 @@ export const ProfileProvider: React.FC<Props> = ({ children }) => {
         };
     }, []);
 
-    useEffect(() => {
-        if(!top.artists?.length || !top.tracks?.length) return;
+    const getRecommendations = useMemo(() => async (top: Top) => {
         const { artists, tracks } = top;
 
         const artistSeeds = artists.slice(0,1).map(artist => artist.id).join(',');
@@ -83,11 +87,28 @@ export const ProfileProvider: React.FC<Props> = ({ children }) => {
                 return artist.genres[0];
             }
         }).join(',');
-        get(`recommendations?seed_artists=${artistSeeds}&seed_tracks=${trackSeeds}&seed_genres=${genreSeeds}`)
-            .then(res => res.json())
+
+        return get(`recommendations?seed_artists=${artistSeeds}&seed_tracks=${trackSeeds}&seed_genres=${genreSeeds}`)
+    }, [top]);
+    useEffect(() => {
+        if(!top.tracks.length || !top.artists.length) return;
+
+        getRecommendations(top)
+            .then(res => res?.json())
             .then(response => {
                 setRecommendations(response.tracks);
                 setIsLoading(false);
+            })
+    }, [top]);
+
+    const showMore = useMemo(() => async () => {
+        console.log('helol');
+        if(!top.tracks.length || !top.artists.length) return;
+
+        getRecommendations(top)
+            .then(res => res.json())
+            .then(response => {
+                setRecommendations(previous => [...previous, ...response.tracks]);
             })
     }, [top]);
 
@@ -100,7 +121,8 @@ export const ProfileProvider: React.FC<Props> = ({ children }) => {
         user: user,
         tracks: top.tracks,
         artists: top.artists,
-        recommendations: recommendations
+        recommendations: recommendations,
+        showMore: showMore
     }
     return(
         // @ts-ignore
