@@ -40,8 +40,9 @@ export const AuthenticationProvider: React.FC<Props> = ({ children }) => {
         window.location.href = `https://accounts.spotify.com/authorize?response_type=code&client_id=${CLIENT_ID}&scope=${encodeURIComponent(SCOPES)}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}`;
     }, []);
     const loginModifyAccess = useMemo(() => () => {
+        console.log('hey')
         const SCOPES = 'playlist-modify-public playlist-modify-private playlist-read-private';
-        window.location.href = `https://accounts.spotify.com/authorize?response_type=code&client_id=${CLIENT_ID}&scope=${encodeURIComponent(SCOPES)}&redirect_uri=${encodeURIComponent(REDIRECT_URI + '/modify')}`;
+        window.open(`https://accounts.spotify.com/authorize?response_type=code&client_id=${CLIENT_ID}&scope=${encodeURIComponent(SCOPES)}&redirect_uri=${encodeURIComponent(REDIRECT_URI + '/modify')}`);
     }, []);
 
     const value = {
