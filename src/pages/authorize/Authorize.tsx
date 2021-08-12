@@ -8,6 +8,8 @@ export const Authorize = () => {
     const { login, loginModifyAccess } = useAuthentication();
     // @ts-ignore
     const { type } = useParams();
+    const close = new URLSearchParams(window.location.search).get('close');
+    console.log(close);
 
     useEffect(() => {
         const code = new URLSearchParams(window.location.search).get('code');
@@ -21,7 +23,11 @@ export const Authorize = () => {
 
         const data = new URLSearchParams();
         data.append("grant_type", "authorization_code");
-        data.append("redirect_uri", type === 'modify' ? REDIRECT_URI + '/modify' : REDIRECT_URI);
+        let NEW_REDIRECT_URI = REDIRECT_URI;
+        if(close) {
+            NEW_REDIRECT_URI += '?close=true';
+        }
+        data.append("redirect_uri", type === 'modify' ? NEW_REDIRECT_URI + '/modify' : NEW_REDIRECT_URI);
         data.append("code", code);
 
         const encodedClientCredentials = Buffer.from(CLIENT_ID + ':' + CLIENT_SECRET).toString('base64');
@@ -35,9 +41,9 @@ export const Authorize = () => {
         }).then(res => res.json()).then(response => {
             if(response.error) {
                 if(type !== 'modify') {
-                    window.location.href = window.location.origin + '/authorize';
+                    // window.location.href = window.location.origin + '/authorize';
                 } else {
-                    window.location.href = window.location.origin + '/authorize/modify'
+                    // window.location.href = window.location.origin + '/authorize/modify'
                 }
             }
             if(!response.access_token) return;
@@ -47,7 +53,10 @@ export const Authorize = () => {
             } else {
                 window.localStorage.userAccessToken = response.access_token;
             }
-            window.location.href = window.location.origin + '/profile';
+            // window.location.href = window.location.origin + '/profile';
+            if(close) {
+                window.close();
+            }
         }).catch(console.error);
     }, []);
 
