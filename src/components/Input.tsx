@@ -15,9 +15,11 @@ interface Props {
     rounded?: boolean;
     onBlur?: () => void;
     onFocus?: () => void;
+    id: string;
+    label: string;
 }
 
-export const Input: React.FC<Props> = ({ placeholder, onSubmit, onChange, disabled, defaultValue, replaceString, noCaps, examples, rounded, noSubmit, onBlur, onFocus }) => {
+export const Input: React.FC<Props> = ({ placeholder, onSubmit, onChange, disabled, defaultValue, replaceString, noCaps, examples, rounded, noSubmit, onBlur, onFocus, label, id }) => {
     const [value, setValue] = useState(defaultValue || '');
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -55,7 +57,11 @@ export const Input: React.FC<Props> = ({ placeholder, onSubmit, onChange, disabl
                 className={rounded ? 'rounded' : ''}
                 onBlur={handleBlur}
                 onFocus={handleFocus}
+                id={id}
             />
+            <label htmlFor={id} style={{position: 'absolute', opacity: 0, pointerEvents: 'none'}}>
+                {label}
+            </label>
             {examples && value === '' && (
                 <InputExamples 
                     examples={examples}

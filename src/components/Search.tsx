@@ -31,6 +31,8 @@ export const Search: React.FC<Props> = ({ onChoice, type='artist' }) => {
                 onChange={setvalue}
                 onBlur={handleBlur}
                 onFocus={handleFocus}
+                id={`search-${type}`}
+                label={`Search for a Spotify ${type}`}
             />
             {value !== '' && (
                 <SearchResults 
