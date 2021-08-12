@@ -55,10 +55,14 @@ export const AuthenticationProvider: React.FC<Props> = ({ children }) => {
             window.location.href = URL;
         }
     }, []);
-    const loginModifyAccess = useMemo(() => () => {
-        console.log('hey')
+    const loginModifyAccess = useMemo(() => (newWindow = true) => {
         const SCOPES = 'playlist-modify-public playlist-modify-private playlist-read-private';
-        window.open(`https://accounts.spotify.com/authorize?response_type=code&client_id=${CLIENT_ID}&scope=${encodeURIComponent(SCOPES)}&redirect_uri=${encodeURIComponent(REDIRECT_URI + '/modify')}`);
+        const URL = `https://accounts.spotify.com/authorize?response_type=code&client_id=${CLIENT_ID}&scope=${encodeURIComponent(SCOPES)}&redirect_uri=${encodeURIComponent(REDIRECT_URI + '/modify')}`;
+        if(newWindow) {
+            window.open(URL);
+        } else {
+            window.location.href = (URL);
+        }
     }, []);
 
     const value = {
