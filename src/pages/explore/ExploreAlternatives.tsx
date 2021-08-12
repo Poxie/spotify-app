@@ -6,6 +6,7 @@ import { PageLoading } from "../../components/PageLoading"
 import { useAPI } from "../../contexts/ApiProvider"
 import { SearchArtist } from "../../types/SearchArtist"
 import { Track } from "../../types/Track"
+import { SmallPlayer } from "../home/SmallPlayer";
 
 interface Props {
     track: Track;
@@ -18,6 +19,7 @@ export const ExploreAlternatives: React.FC<Props> = ({ track, artist, setIsExplo
     const [previous, setPrevious] = useState<{track: null | Track, artist: null | SearchArtist}>({track: null, artist: null});
     const [loaded, setLoaded] = useState<false | Track[]>(false);
     const [hasLoadPage, setHasLoadPage] = useState(true);
+    const [preview, setPreview] = useState(false);
     const ref = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -86,13 +88,31 @@ export const ExploreAlternatives: React.FC<Props> = ({ track, artist, setIsExplo
                             Go back
                         </Flex>
                     </Clickable>
-                    <h1>
-                        Tracks related to <span style={{fontWeight: 'bold'}}>{artist.name}</span> and <span style={{fontWeight: 'bold'}}>{track.name}</span>
-                    </h1>
-                    <CardContainer 
-                        showAll={true}
-                        tracks={loaded}
-                    />
+                    <Flex justifyContent={'space-between'} alignItems={'center'}>
+                        <h1>
+                            Tracks related to <span style={{fontWeight: 'bold'}}>{artist.name}</span> and <span style={{fontWeight: 'bold'}}>{track.name}</span>
+                        </h1>
+                        <Clickable onClick={() => setPreview(!preview)}>
+                            {preview ? 'Disable' : 'Enable'} preview mode
+                        </Clickable>
+                    </Flex>
+                    <Flex className="explore-container" flexWrap={'wrap'} justifyContent={'space-between'}>
+                        {loaded.map(track => {
+                            const { album, duration_ms, name, preview_url, uri, id } = track;
+                            return(
+                                <SmallPlayer 
+                                    active={true}
+                                    album={track.album}
+                                    durationMS={track.duration_ms}
+                                    name={name}
+                                    preview={preview_url}
+                                    uri={uri}
+                                    hasControls={preview}
+                                    key={id}
+                                />
+                            )
+                        })}
+                    </Flex>
                 </div>
             )}
         </div>

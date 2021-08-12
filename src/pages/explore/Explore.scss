@@ -64,6 +64,18 @@
     max-width: 90%;
     margin: 0 auto;
 
+    .explore-container {
+        .small-player {
+            transform: scale(1);
+            width: 23%;
+            margin: 0;
+            margin-bottom: 25px;
+
+            img {
+                width: 100%;
+            }
+        }
+    }
     .page-loading {
         margin-top: 0;
         transition: margin-top .5s;
