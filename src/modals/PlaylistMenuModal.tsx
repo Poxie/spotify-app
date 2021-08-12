@@ -6,6 +6,7 @@ import { Modal } from "../components/Modal"
 import { ModalFooter } from "../components/ModalFooter";
 import { ModalHeader } from "../components/ModalHeader"
 import { useAPI } from "../contexts/ApiProvider"
+import { useAuthentication } from "../contexts/AuthenticationProvider";
 import { useModal } from "../contexts/ModalProvider";
 import { Playlist as PlaylistType } from "../types/Playlist";
 import { PlaylistItem } from "./PlaylistItem";
@@ -15,6 +16,7 @@ interface Props {
     uri: string;
 }
 export const PlaylistMenuModal: React.FC<Props> = ({ uri }) => {
+    const { user } = useAuthentication();
     const { get, post } = useAPI();
     const { close } = useModal();
     const [playlists, setPlaylists] = useState<PlaylistType[]>([]);
@@ -22,10 +24,11 @@ export const PlaylistMenuModal: React.FC<Props> = ({ uri }) => {
     const [posting, setPosting] = useState(false);
 
     useEffect(() => {
-        get('me/playlists', true)
+        get('me/playlists?limit=50', true)
             .then(res => res.json())
             .then(response => {
-                setPlaylists(response.items);
+                // @ts-ignore: user will always be a of type User
+                setPlaylists(response.items.filter((item: PlaylistType) => item.owner.id === user.id));
             })
     }, []);
 
