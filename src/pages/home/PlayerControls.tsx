@@ -5,8 +5,9 @@ import { PlayerTrack } from "./PlayerTrack"
 
 interface Props {
     preview: string;
+    uri: string;
 }
-export const PlayerControls: React.FC<Props> = ({ preview }) => {
+export const PlayerControls: React.FC<Props> = ({ preview, uri }) => {
     const { setFeedback } = useFeedback();
     const [isPlaying, setIsPlaying] = useState(false);
     const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
@@ -17,6 +18,7 @@ export const PlayerControls: React.FC<Props> = ({ preview }) => {
             if(!audio) {
                 const audio = new Audio(preview);
                 setAudio(audio);
+                setFeedback(<span>Listen to the entire song <a style={{textDecoration: 'underline'}} href={uri}>here</a><br/>or press the song name.</span>);
                 return;
             }
             audio.volume = .3;

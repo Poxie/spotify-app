@@ -30,6 +30,7 @@ export const SmallPlayer: React.FC<Props> = ({ name, durationMS, album, active, 
             {hasControls && (
                 <PlayerControls 
                     preview={preview}
+                    uri={uri}
                 />
             )}
         </div>
