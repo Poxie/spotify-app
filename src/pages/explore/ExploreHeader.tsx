@@ -69,6 +69,7 @@ export const ExploreHeader: React.FC<Props> = ({ onExplore, isExploring }) => {
                             artists={track.artists}
                             image={track.album.images[0]?.url}
                             name={track.name}
+                            uri={track.uri}
                         />
                     ) : (
                         <LoadingInfo />

@@ -8,7 +8,9 @@ interface Props {
 export const Card: React.FC<Props> = ({ name, image, uri }) => {
     return(
         <div className="card">
-            <img src={image} alt="" />
+           <a href={uri}>
+                <img src={image} alt="" />
+           </a>
             <a href={uri} className="name">
                 {name}
             </a>

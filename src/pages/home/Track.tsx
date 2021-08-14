@@ -20,7 +20,9 @@ export const Track: React.FC<Props> = ({ name, image, artists, duration, uri, in
                         {index}
                     </span>
                 )}
-                <img src={image} alt="" />
+                <a href={uri}>
+                    <img style={{display: 'block'}} src={image} alt="" />
+                </a>
                 <a href={uri}>
                     {name}
                 </a>

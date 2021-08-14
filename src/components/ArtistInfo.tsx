@@ -14,7 +14,9 @@ export const ArtistInfo: React.FC<Props> = ({ name, uri, followers, popularity, 
     return(
         <div className="artist-info">
             <Flex>
-                <img src={image} alt="" />
+                <a href={uri}>
+                    <img style={{display: 'block'}} src={image} alt="" />
+                </a>
                 <div className="artist-text">
                     <a href={uri}>
                         <h2 className="name">

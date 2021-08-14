@@ -16,7 +16,9 @@ export const SmallPlayer: React.FC<Props> = ({ name, durationMS, album, active, 
     return(
         <div className={`small-player${active ? ' active' : ''}`}>
             <AddToPlaylist uri={uri} />
-            <img src={album.images[1].url} alt="" />
+            <a href={uri}>
+                <img src={album.images[1].url} alt="" />
+            </a>
             <div className="song-text">
                 <a href={uri} className="song-title">
                     {name}
