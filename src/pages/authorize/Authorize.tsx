@@ -41,9 +41,11 @@ export const Authorize = () => {
         }).then(res => res.json()).then(response => {
             if(response.error) {
                 if(type !== 'modify') {
-                    // window.location.href = window.location.origin + '/authorize';
+                    const url = window.location.origin + '/authorize' + close ? '?close=true' : '';
+                    window.location.href = url;
                 } else {
-                    // window.location.href = window.location.origin + '/authorize/modify'
+                    const url = window.location.origin + '/authorize/modify' + close ? '?close=true' : '';
+                    window.location.href = url;
                 }
             }
             if(!response.access_token) return;
@@ -53,7 +55,7 @@ export const Authorize = () => {
             } else {
                 window.localStorage.userAccessToken = response.access_token;
             }
-            // window.location.href = window.location.origin + '/profile';
+            window.location.href = window.location.origin + '/profile';
             if(close) {
                 window.close();
             }
