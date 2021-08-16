@@ -52,11 +52,11 @@
     position: relative;
     
     img {
-        // border-radius: var(--border-radius);
+        border-radius: var(--border-radius);
         width: 200px;
     }
     .song-title {
-        font-size: 14px;
+        font-size: 17px;
         margin-bottom: 2px;
         white-space: nowrap;
         overflow: hidden;
@@ -64,7 +64,7 @@
         display: block;
     }
     .song-artist {
-        font-size: 12px;
+        font-size: 14px;
         color: var(--text-muted);
     }
     svg {
@@ -177,7 +177,7 @@
 
     img {
         width: 35px;
-        // border-radius: calc(var(--border-radius) / 2);
+        border-radius: calc(var(--border-radius) / 2);
         margin-right: 15px;
     }
     .highlight {
