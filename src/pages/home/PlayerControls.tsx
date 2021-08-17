@@ -18,7 +18,6 @@ export const PlayerControls: React.FC<Props> = ({ preview, uri }) => {
             if(!audio) {
                 const audio = new Audio(preview);
                 setAudio(audio);
-                setFeedback(<span>Listen to the entire song <a style={{textDecoration: 'underline'}} href={uri}>here</a><br/>or press the song name.</span>);
                 return;
             }
             audio.volume = .3;
