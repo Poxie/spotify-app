@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useEffect, useMemo, useRef, useState } from "react"
 import { useAPI } from '../contexts/ApiProvider';
 import { Artist } from '../types/Artist';
 import { SearchArtist } from '../types/SearchArtist';
@@ -37,13 +37,18 @@ export const SearchResults: React.FC<Props> = ({ query, onClick, visible, type='
             pointerEvents: 'none'
         }
     }
-    if(ref.current && visible && !isFacingUp) {
+    const checkForExceedingHeight = useMemo(() => () => {
+        if(!ref.current) return;
         const { height, top } = ref.current.getBoundingClientRect();
         const containerHeight = window.innerHeight;
-        console.log(height, top, containerHeight);
         if(height + top > containerHeight) {
             setIsFacingUp(true);
         }
+    }, []);
+    useEffect(checkForExceedingHeight, [results]);
+    
+    if(ref.current && visible && !isFacingUp) {
+        checkForExceedingHeight();
     }
     if(isFacingUp) {
         style = {
