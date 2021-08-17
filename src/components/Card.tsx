@@ -8,7 +8,7 @@ interface Props {
 }
 export const Card: React.FC<Props> = ({ name, image, uri, index }) => {
     const style = {
-        animationDelay: `${(index - 5) * .10}s`
+        animationDelay: `${(index - 5) * .06}s`
     }
 
     return(
