@@ -10,6 +10,7 @@ import { Authorize } from './pages/authorize/Authorize';
 import { Explore } from './pages/explore/Explore';
 import { Home } from './pages/home/Home';
 import { Profile } from './pages/profile/Profile';
+import { Footer } from './components/Footer';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
                   path="/explore"
                   component={Explore}
                 />
+                <Footer />
               </ModalProvider>
             </AuthenticationProvider>
           </APIProvider>
