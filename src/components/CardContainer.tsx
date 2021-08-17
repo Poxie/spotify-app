@@ -13,7 +13,7 @@ export const CardContainer: React.FC<Props> = ({ tracks, showAll }) => {
     const visibleTracks = showAll ? tracks : tracks.slice(0, 5);
     return(
         <Flex className={`card-container${showAll ? ' expanded' : ''}`} flexWrap={'wrap'} justifyContent={'space-between'}>
-            {visibleTracks.map(track => {
+            {visibleTracks.map((track, key) => {
                 const { id, name, uri } = track;
                 let image;
                 if(Object.keys(track).includes('album')) {
@@ -28,6 +28,7 @@ export const CardContainer: React.FC<Props> = ({ tracks, showAll }) => {
                         name={name}
                         image={image}
                         uri={uri}
+                        index={key}
                         key={id}
                     />
                 )

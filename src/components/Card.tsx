@@ -4,10 +4,15 @@ interface Props {
     name: string;
     image: string;
     uri: string;
+    index: number;
 }
-export const Card: React.FC<Props> = ({ name, image, uri }) => {
+export const Card: React.FC<Props> = ({ name, image, uri, index }) => {
+    const style = {
+        animationDelay: `${(index - 5) * .10}s`
+    }
+
     return(
-        <div className="card">
+        <div className="card" style={style}>
            <a href={uri}>
                 <img src={image} alt="" />
            </a>
