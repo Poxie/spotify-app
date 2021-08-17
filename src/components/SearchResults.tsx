@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { useAPI } from '../contexts/ApiProvider';
 import { Artist } from '../types/Artist';
 import { SearchArtist } from '../types/SearchArtist';
@@ -13,6 +13,8 @@ interface Props {
 export const SearchResults: React.FC<Props> = ({ query, onClick, visible, type='artist' }) => {
     const { get } = useAPI();
     const [results, setResult] = useState<SearchArtist[]>([]);
+    const ref = useRef<HTMLDivElement>(null);
+    const [isFacingUp, setIsFacingUp] = useState(false);
 
     useEffect(() => {
         get(`search?q=${query}&type=${type}`)
@@ -22,6 +24,11 @@ export const SearchResults: React.FC<Props> = ({ query, onClick, visible, type='
                 setResult(result);
             });
     }, [query]);
+    useEffect(() => {
+        if(!visible) {
+            setIsFacingUp(false);
+        }
+    }, [visible]);
 
     let style = {};
     if(!visible) {
@@ -30,8 +37,21 @@ export const SearchResults: React.FC<Props> = ({ query, onClick, visible, type='
             pointerEvents: 'none'
         }
     }
+    if(ref.current && visible && !isFacingUp) {
+        const { height, top } = ref.current.getBoundingClientRect();
+        const containerHeight = window.innerHeight;
+        console.log(height, top, containerHeight);
+        if(height + top > containerHeight) {
+            setIsFacingUp(true);
+        }
+    }
+    if(isFacingUp) {
+        style = {
+            bottom: '65px'
+        }
+    }
     return(
-        <div className="search-results scrollbar" style={style}>
+        <div className="search-results scrollbar" style={style} ref={ref}>
             {results.map((result: any) => {
                 const { name, images, followers, id, album } = result;
                 const image = images ? images[0]?.url : album.images[0]?.url;
