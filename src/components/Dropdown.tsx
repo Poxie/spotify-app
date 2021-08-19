@@ -6,7 +6,7 @@ import './Dropdown.scss';
 interface Props {
     items: string[];
     defaultActive?: string;
-    onChange?: () => void;
+    onChange?: (id: string) => void;
 }
 export const Dropdown: React.FC<Props> = ({ items, defaultActive, onChange }) => {
     const [active, setActive] = useState(defaultActive || items[0]);
@@ -29,6 +29,9 @@ export const Dropdown: React.FC<Props> = ({ items, defaultActive, onChange }) =>
     const handleClick = (id: string) => {
         setActive(id);
         setOpen(false);
+        if(onChange) {
+            onChange(id);
+        }
     }
 
     return(
