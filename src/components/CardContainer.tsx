@@ -29,7 +29,7 @@ export const CardContainer: React.FC<Props> = ({ tracks, showAll }) => {
                         image={image}
                         uri={uri}
                         index={key}
-                        key={id}
+                        key={id + tracks.slice(0,5).map(track => track.id.slice(0,5)).join('')}
                     />
                 )
             })}
