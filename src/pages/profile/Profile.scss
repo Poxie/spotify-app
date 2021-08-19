@@ -26,6 +26,10 @@
 .profile-header {
     border-bottom: 4px solid var(--secondary-background);
     padding: 50px 0;
+
+    .dropdown {
+        margin-left: 20px;
+    }
 }
 .header.expanded {
     position: sticky;

@@ -17,6 +17,7 @@ export const ProfileHeader: React.FC<Props> = ({ tracks, artists }) => {
                 header={'Your Most Liked Songs'} 
                 onExpand={() => setAllTracks(!allTracks)}
                 isExpanded={allTracks}
+                id={'tracks'}
             >
                 <CardContainer 
                     tracks={tracks}
@@ -27,6 +28,7 @@ export const ProfileHeader: React.FC<Props> = ({ tracks, artists }) => {
                 header={'Your Most Liked Artists'} 
                 onExpand={() => setAllArtists(!allArtists)}
                 isExpanded={allArtists}
+                id={'artists'}
             >
                 <CardContainer 
                     tracks={artists}

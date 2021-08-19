@@ -6,14 +6,16 @@ interface Props {
     header: string;
     onExpand: () => void;
     isExpanded: boolean;
+    id?: 'artists' | 'tracks';
     children: any;
 }
-export const ProfileHeaderSection: React.FC<Props> = ({ children, header, onExpand, isExpanded }) => {
+export const ProfileHeaderSection: React.FC<Props> = ({ children, header, onExpand, isExpanded, id }) => {
     return(
         <div className="profile-header-section">
             <Header
                 text={header}
                 className={isExpanded ? 'expanded' : undefined}
+                id={id}
             >
                 <Clickable className="header-action" onClick={onExpand}>
                     {isExpanded ? 'Show less' : 'Show more'}
