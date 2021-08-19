@@ -12,7 +12,8 @@ const initial = {
     artists: [],
     tracks: [],
     recommendations: [],
-    showMore: () => {}
+    showMore: () => {},
+    changeTopType: (id: 'artists' | 'tracks', type: string) => {}
 }
 // @ts-ignore: because user is never actually an empty object
 const ProfileContext = createContext<ProfileContextType>(initial);
@@ -33,29 +34,33 @@ export const ProfileProvider: React.FC<Props> = ({ children }) => {
     const { user } = useAuthentication();
     const history = useHistory();
     const [top, setTop] = useState<Top>({tracks: [], artists: []});
+    const allArtistsAndTracks: any = useRef({artists: {allTime: [], lastFourWeeks: [], lastSixMonths: []}, tracks: {allTime: [], lastFourWeeks: [], lastSixMonths: []}});
     const [recommendations, setRecommendations] = useState<Track[]>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(false);
     const unlisten = useRef<any>(null);
 
+    const getTop = useMemo(() => async (type: 'artists' | 'tracks', timeRange: 'long_term' | 'medium_term' | 'short_term') => {
+        return await get(`me/top/${type}?time_range=${timeRange}&limit=50`, true).then(res => res.json()).then(response => {
+            if(response.error) {
+                setError(true);
+                return [];
+            }
+            return response.items;
+        });
+    }, []);
     const fetchUserData = useMemo(() => () => {
         setIsLoading(true);
-        get('me/top/tracks?time_range=long_term&limit=50', true)
-            .then(res => res.json())
+        getTop('tracks', 'long_term')
             .then(response => {
-                if('error' in response) {
-                    return setError(true);
-                }
-                setTop(previous => {return {...previous, ...{tracks: response.items}}});
+                setTop(previous => {return {...previous, ...{tracks: response}}});
+                allArtistsAndTracks.current.tracks.allTime = response;
             })
-
-        get('me/top/artists?time_range=long_term&limit=50', true)
-            .then(res => res.json())
+            
+            getTop('artists', 'long_term')
             .then(response => {
-                if(response.error) {
-                    return setError(true);
-                }
-                setTop(previous => {return {...previous, ...{artists: response.items}}});
+                setTop(previous => {return {...previous, ...{artists: response}}});
+                allArtistsAndTracks.current.artists.allTime = response;
             })
     }, []);
     useEffect(() => {
@@ -112,6 +117,32 @@ export const ProfileProvider: React.FC<Props> = ({ children }) => {
             })
     }, [top]);
 
+    const changeTopType = useMemo(() => (id: 'artists' | 'tracks', type: 'allTime' | 'lastSixMonths' | 'lastFourWeeks') => {
+        if(!allArtistsAndTracks.current[id][type].length) {
+            let typeTerm: any;
+            if(type === 'lastSixMonths') {
+                typeTerm = 'medium_term';
+            } else if(type === 'lastFourWeeks') {
+                typeTerm = 'short_term';
+            } else if(type === 'allTime') {
+                typeTerm = 'long_term';
+            }
+            getTop(id, typeTerm)
+                .then(response => {
+                    setTop(previous => {
+                        previous = {...previous, ...{[id]: response}}
+                        return previous;
+                    });
+                    allArtistsAndTracks.current[id][type] = response;
+                })
+        } else {
+            setTop(previous => {
+                previous = {...previous, ...{[id]: allArtistsAndTracks.current[id][type]}};
+                return previous;
+            });
+        }
+    }, []);
+
     if((!user || error) && isLoading) return <Redirect to="/authorize" />;
     if(!user) return <div></div>
 
@@ -122,7 +153,8 @@ export const ProfileProvider: React.FC<Props> = ({ children }) => {
         tracks: top.tracks,
         artists: top.artists,
         recommendations: recommendations,
-        showMore: showMore
+        showMore: showMore,
+        changeTopType: changeTopType
     }
     return(
         // @ts-ignore

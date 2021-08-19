@@ -8,4 +8,5 @@ export interface ProfileContext {
     artists: Artist[];
     recommendations: Track[];
     showMore: () => void;
+    changeTopType: (id: 'artists' | 'tracks', type: 'allTime' | 'lastSixMonths' | 'lastFourWeeks') => void;
 }
