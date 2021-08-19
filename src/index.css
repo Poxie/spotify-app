@@ -19,6 +19,8 @@
   --initial-animation: initial-scale-in 1.5s forwards ease-in-out;
   --tooltip-background: var(--secondary-background);
   --color-info: #0099ff;
+  --dropdown-background: #e4e4e4;
+  --active-dropdown-background: #d3d3d3;
 }
 
 body {
